@@ -201,154 +201,10 @@
         transform: translateY(0);
       }
     }
-
-    /* Jadwal kelas */
-    .jadwal-hari {
-      margin-bottom: 20px;
-      padding: 15px;
-      background-color: #f8f9fa;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
-
-    .jadwal-hari h4 {
-      color: #0d47a1;
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 18px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 5px;
-    }
-
-    .jadwal-hari ul {
-      list-style: disc;
-      padding-left: 20px;
-    }
-
-    .jadwal-hari ul li {
-      background: none;
-      margin: 5px 0;
-      padding: 0;
-      border-radius: 0;
-      display: list-item;
-      justify-content: flex-start;
-      align-items: flex-start;
-      font-size: 15px;
-      color: #555;
-    }
-
-    .jadwal-hari ul li:hover {
-      background: none;
-      transform: none;
-    }
-
-    /* Galeri Foto Momen */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .gallery-item {
-      background: #f8f9fa;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease-in-out;
-      position: relative;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .gallery-item .caption {
-      padding: 10px;
-      font-size: 14px;
-      color: #555;
-      text-align: center;
-      background-color: #fff;
-    }
-
-    .gallery-item .delete-photo-btn {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      background-color: rgba(255, 255, 255, 0.8);
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      font-size: 16px;
-      color: #dc3545;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      transition: opacity 0.2s ease-in-out;
-    }
-
-    .gallery-item:hover .delete-photo-btn {
-      opacity: 1;
-    }
-
-    .add-photo-section {
-      margin-top: 30px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .add-photo-section input[type="text"] {
-      flex-grow: 1;
-      width: auto;
-      margin-right: 0;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    .add-photo-section .add-btn {
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 480px) {
-      .add-photo-section {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .add-photo-section input[type="text"] {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="logo.png" alt="Logo Kelas TEKOM B" />
-    <h1>Kelas TEKOM B</h1>
-    <h2>Computer Engineering</h2>
-  </header>
-
   <nav>
-    <button onclick="show('siswa')" class="active"><i class="fas fa-users"></i> Daftar Siswa</button>
-    <button onclick="show('jadwal')"><i class="fas fa-calendar-alt"></i> Jadwal Kelas</button>
-    <button onclick="show('aktivitas')"><i class="fas fa-clipboard-list"></i> Aktivitas Kelas</button>
-    <button onclick="show('momen')"><i class="fas fa-camera"></i> Foto Momen</button>
+    <button onclick="show('siswa')">📘 Daftar Siswa</button>
+    <button onclick="show('jadwal')">📅 Jadwal Kelas</button>
+    <button onclick="show('aktivitas')">📝 Aktivitas</button>
   </nav>
 
   <div id="siswa" class="card">
@@ -362,23 +218,10 @@
 
   <div id="jadwal" class="card hidden">
     <h3>Jadwal Kelas</h3>
-    <div class="jadwal-hari">
-      <h4>Senin</h4>
-      <ul>
-        <li>Ilmu Filsafat (07:30 - 09:00)</li>
-        <li>Keamanan Informasi (09:00 - 10:30)</li>
-        <li>Bahasa Inggris (10:30 - 12:00)</li>
-        <li>PAI (13:00 - 14:30)</li>
-      </ul>
-    </div>
-    <div class="jadwal-hari">
-      <h4>Selasa</h4>
-      <ul>
-        <li>PKN (07:30 - 09:00)</li>
-        <li>Pengantar TI (09:00 - 10:30)</li>
-        <li>Sistem Komputer (10:30 - 12:00)</li>
-      </ul>
-    </div>
+    <ul>
+      <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
+      <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
+    </ul>
   </div>
 
   <div id="aktivitas" class="card hidden">
@@ -390,134 +233,132 @@
     </div>
   </div>
 
-  <div id="momen" class="card hidden">
-    <h3>Foto Momen Kelas</h3>
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- Foto-foto akan dimuat di sini oleh JavaScript -->
-    </div>
-    <div class="add-photo-section">
-      <input type="text" id="inputPhotoUrl" placeholder="URL Gambar" />
-      <input type="text" id="inputPhotoCaption" placeholder="Keterangan Foto (Opsional)" />
-      <button class="add-btn" onclick="tambahFoto()">Tambah Foto</button>
-    </div>
-  </div>
-
   <script>
-    // Data siswa dan aktivitas dari localStorage atau default
-    let siswa = JSON.parse(localStorage.getItem("siswa")) || [
-      "Ahmad Fauzi",
-      "Siti Nurhaliza",
-      "Budi Santoso",
-      "Dewi Lestari",
-      "Rizky Pratama",
-      "Lina Marlina",
-      "Andi Wijaya",
-      "Maya Sari",
-      "Fajar Nugroho",
-      "Nina Kurnia"
-    ];
-
-    let aktivitas = JSON.parse(localStorage.getItem("aktivitas")) || [
-      "Diskusi kelompok tentang IoT",
-      "Presentasi proyek akhir",
-      "Praktikum jaringan komputer",
-      "Workshop keamanan siber",
-      "Evaluasi tugas mingguan"
-    ];
-
-    let momenFoto = JSON.parse(localStorage.getItem("momenFoto")) || [
-      { url: "https://via.placeholder.com/150/FF5733/FFFFFF?text=Momen+1", caption: "Diskusi Kelompok" },
-      { url: "https://via.placeholder.com/150/33FF57/FFFFFF?text=Momen+2", caption: "Presentasi Proyek" },
-      { url: "https://via.placeholder.com/150/3357FF/FFFFFF?text=Momen+3", caption: "Praktikum Lab" },
-      { url: "https://via.placeholder.com/150/FF33F5/FFFFFF?text=Momen+4", caption: "Acara Kampus" }
-    ];
-
-    // Fungsi menampilkan tab yang dipilih
     function show(id) {
       document.getElementById('siswa').classList.add('hidden');
       document.getElementById('jadwal').classList.add('hidden');
       document.getElementById('aktivitas').classList.add('hidden');
-      document.getElementById('momen').classList.add('hidden');
       document.getElementById(id).classList.remove('hidden');
-
-      // Atur tombol navigasi aktif
-      document.querySelectorAll('nav button').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      document.querySelector(`nav button[onclick="show('${id}')"]`).classList.add('active');
     }
 
-    // Render daftar siswa
+     let siswa = JSON.parse(localStorage.getItem("siswa")) || [
+  "Siti Olyvia - Teknik Komputer",
+  "Yunia Arum Kusuma Dewi - Teknik Komputer",
+  "Nayla Erli Suci Ramadhani - Teknik Komputer",
+  "Tri Wahyuni - Teknik Komputer",
+  "Dela Ahmad Anisa Putri - Teknik Komputer",
+  "Indria Sagita - Teknik Komputer",
+  "Rara Sevira Anggraini - Teknik Komputer",
+  "Muhammad Enggar Ilman Nafian - Teknik Komputer",
+  "Vico Algibran - Teknik Komputer",
+  "Arief Ahmadi - Teknik Komputer",
+  "Widya Ayu Gistala - Teknik Komputer",
+  "Muhammad Aeris Angghi Effendi - Teknik Komputer",
+  "Sudarman - Teknik Komputer",
+  "Fauzan Aziz - Teknik Komputer",
+  "Eza Julian - Teknik Komputer",
+  "Krisda Apriantika - Teknik Komputer",
+  "Dwi Ramadhanna - Teknik Komputer",
+  "Repy Septiyawan - Teknik Komputer",
+  "Khutrotul Jannah - Teknik Komputer",
+  "Aisyiyah Qolbi - Teknik Komputer",
+  "Bakas Minanga Jaya Laga - Teknik Komputer",
+  "Anisa Hanifatun Abdilah - Teknik Komputer",
+  "Irvan Ali Rosyadi - Teknik Komputer",
+  "Muhammad Ghazian Alpha Hazazi - Teknik Komputer",
+  "Naufal Halim - Teknik Komputer",
+  "Riko Wiratama - Teknik Komputer",
+  "Sarina - Teknik Komputer",
+  "Widiya Wulansari - Teknik Komputer",
+  "Yuga Azrial Maulana - Teknik Komputer",
+  "Abdurrahman Ghozie - Teknik Komputer",
+  "Antoni Wijaya - Teknik Komputer",
+  "Arief Junaidi - Teknik Komputer",
+  "Aulia Malik Fadhillah - Teknik Komputer",
+  "Ulfi Maula - Teknik Komputer",
+  "Kholillurrohman - Teknik Komputer",
+  "Mugi Handoyo - Teknik Komputer",
+  "Rahmat - Teknik Komputer",
+  "Nur Resepa H - Teknik Komputer",
+  "Nadia Nur Azzahraa - Teknik Komputer",
+  "Muhammad Iqbal Nugroho - Teknik Komputer",
+  "M. Yusuf Tegar - Teknik Komputer",
+  "M. Arif Wahyudi - Teknik Komputer",
+  "M. Bustomi - Teknik Komputer",
+  "Faqih Hidayat - Teknik Komputer",
+  "Cinta Pebrian - Teknik Komputer",
+  "Deastine Suherlan - Teknik Komputer",
+  "Anjeli Letparia - Teknik Komputer",
+  "Alfan Fadla - Teknik Komputer",
+  "Aditya Sanjaya - Teknik Komputer",
+  "Abil Qos Alaudin - Teknik Komputer"
+];
+    let aktivitas = JSON.parse(localStorage.getItem("aktivitas")) || [
+      "Diskusi kelompok",
+      "Presentasi tugas",
+      "Praktikum lab"
+    ];
+
     function renderSiswa() {
       let list = document.getElementById('listSiswa');
       list.innerHTML = '';
       siswa.forEach((nama, i) => {
         let li = document.createElement('li');
-        li.innerHTML = `<span>${i + 1}. ${nama}</span> <span class="delete-btn" onclick="hapusSiswa(${i})"><i class="fas fa-trash-alt"></i></span>`;
+        li.innerHTML = `${nama} <span class="delete-btn" onclick="hapusSiswa(${i})">❌</span>`;
         list.appendChild(li);
       });
     }
 
-    // Render daftar aktivitas
     function renderAktivitas() {
       let list = document.getElementById('listAktivitas');
       list.innerHTML = '';
       aktivitas.forEach((act, i) => {
         let li = document.createElement('li');
-        li.innerHTML = `<span>${i + 1}. ${act}</span> <span class="delete-btn" onclick="hapusAktivitas(${i})"><i class="fas fa-trash-alt"></i></span>`;
+        li.innerHTML = `${act} <span class="delete-btn" onclick="hapusAktivitas(${i})">❌</span>`;
         list.appendChild(li);
       });
     }
 
-    // Render galeri foto momen
-    function renderMomenFoto() {
-      let galleryGrid = document.getElementById('galleryGrid');
-      galleryGrid.innerHTML = '';
-      if (momenFoto.length === 0) {
-        galleryGrid.innerHTML = '<p style="text-align: center; color: #777;">Belum ada foto momen.</p>';
-        return;
-      }
-      momenFoto.forEach((foto, i) => {
-        let galleryItem = document.createElement('div');
-        galleryItem.classList.add('gallery-item');
-        galleryItem.innerHTML = `
-          <img src="${foto.url}" alt="${foto.caption || 'Foto Momen'}" />
-          <div class="caption">${foto.caption || 'Tanpa Keterangan'}</div>
-          <button class="delete-photo-btn" onclick="hapusFoto(${i})"><i class="fas fa-times"></i></button>
-        `;
-        galleryGrid.appendChild(galleryItem);
-      });
-    }
-
-    // Tambah siswa baru
     function tambahSiswa() {
       let input = document.getElementById('inputSiswa');
       let nama = input.value.trim();
-      if (nama === '') {
-        alert('Nama siswa tidak boleh kosong!');
-        return;
-      }
+      if (nama === '') { alert('Nama siswa tidak boleh kosong!'); return; }
       siswa.push(nama);
       simpanData();
       renderSiswa();
       input.value = '';
     }
 
-    // Tambah aktivitas baru
     function tambahAktivitas() {
       let input = document.getElementById('inputAktivitas');
       let act = input.value.trim();
-      if (act === '') {
-        alert('Aktivitas tidak boleh kosong!');
-        return;
-      }
+      if (act === '') { alert('Aktivitas tidak boleh kosong!'); return; }
       aktivitas.push(act);
       simpanData();
       renderAktivitas();
       input.value = '';
     }
 
-    // Tambah foto baru ke galeri
-    function tambahFoto() {
-      let inputUrl = document.getElementById('inputPhotoUrl');
-      let inputCaption = document.getElementBy
+    function hapusSiswa(i) {
+      siswa.splice(i, 1);
+      simpanData();
+      renderSiswa();
+    }
+    function hapusAktivitas(i) {
+      aktivitas.splice(i, 1);
+      simpanData();
+      renderAktivitas();
+    }
+
+    function simpanData() {
+      localStorage.setItem("siswa", JSON.stringify(siswa));
+      localStorage.setItem("aktivitas", JSON.stringify(aktivitas));
+    }
+
+    renderSiswa();
+    renderAktivitas();
+  </script>
+</body>
+</html>
+<header>
+  
