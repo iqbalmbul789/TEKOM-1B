@@ -57,6 +57,44 @@ input[type="text"] {
   box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:0.3s;
 }
 .gallery img:hover { transform:scale(1.05); }
+
+/* Footer Sosial Media */
+footer {
+  text-align:center;
+  padding:20px;
+  margin-top:30px;
+}
+.social-links {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+.social-links a {
+  text-decoration:none;
+  font-weight:bold;
+  padding:12px 20px;
+  border-radius:30px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#fff;
+  box-shadow:0 3px 6px rgba(0,0,0,0.2);
+  transition:0.3s;
+}
+.social-links a.wa {
+  background:#25D366;
+}
+.social-links a.wa:hover {
+  background:#128C7E;
+  transform:scale(1.05);
+}
+.social-links a.ig {
+  background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+}
+.social-links a.ig:hover {
+  transform:scale(1.05);
+  opacity:0.9;
+}
 </style>
 </head>
 <body>
@@ -76,7 +114,6 @@ input[type="text"] {
   <button onclick="show('jadwal')">📅 Jadwal Kelas</button>
   <button onclick="show('aktivitas')">📝 Aktivitas</button>
   <button onclick="show('pengumuman')">📢 Pengumuman</button>
-  <button onclick="show('kontak')">📞 Kontak</button>
   <button onclick="show('galeri')">🖼 Galeri</button>
 </nav>
 
@@ -85,7 +122,71 @@ input[type="text"] {
   <h3>Daftar Siswa</h3>
   <ul id="listSiswa"></ul>
   <div>
-    <input type="text" id="inputSiswa" placeholder=" [
+    <input type="text" id="inputSiswa" placeholder="Tambah nama siswa baru" />
+    <button class="add-btn" onclick="tambahSiswa()">Tambah</button>
+  </div>
+</div>
+
+<!-- Jadwal -->
+<div id="jadwal" class="card hidden">
+  <h3>Jadwal Kelas</h3>
+  <ul>
+    <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
+    <li>Selasa: PKN (07:30 - 09:00), Pengantar Teknologi Informasi (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
+  </ul>
+</div>
+
+<!-- Aktivitas -->
+<div id="aktivitas" class="card hidden">
+  <h3>Aktivitas Kelas</h3>
+  <ul id="listAktivitas"></ul>
+  <div>
+    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
+    <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
+  </div>
+</div>
+
+<!-- Pengumuman -->
+<div id="pengumuman" class="card hidden">
+  <h3>Pengumuman</h3>
+  <ul id="HARI MINGGU LIBUR:V"></ul>
+  <div>
+    <input type="text" id="inputPengumuman" placeholder="Tambah pengumuman baru" />
+    <button class="add-btn" onclick="tambahPengumuman()">Tambah</button>
+  </div>
+</div>
+
+<!-- Galeri -->
+<div id="galeri" class="card hidden">
+  <h3>Galeri Foto</h3>
+  <div class="gallery">
+    <img src="foto1.jpg" alt="Foto 1">
+    <img src="foto2.jpg" alt="Foto 2">
+    <img src="foto3.jpg" alt="Foto 3">
+  </div>
+</div>
+
+<!-- Footer Sosial Media -->
+<footer>
+  <div class="social-links">
+    <a href="https://wa.me/6282240411060" target="_blank" class="wa">📱 WhatsApp</a>
+    <a href="https://instagram.com/tekom_1b" target="_blank" class="ig">📸 Instagram</a>
+  </div>
+</footer>
+
+<script>
+// Musik
+const music=document.getElementById('bgMusic');
+function toggleMusic(){ music.paused?music.play():music.pause(); }
+
+// Navigasi
+function show(id){
+  ['siswa','jadwal','aktivitas','pengumuman','galeri'].forEach(i=>document.getElementById(i).classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+// Data
+let siswa=JSON.parse(localStorage.getItem("siswa"))||[
   "Siti Olyvia - Teknik Komputer",
   "Yunia Arum Kusuma Dewi - Teknik Komputer",
   "Nayla Erli Suci Ramadhani - Teknik Komputer",
@@ -136,68 +237,7 @@ input[type="text"] {
   "Alfan Fadla - Teknik Komputer",
   "Aditya Sanjaya - Teknik Komputer",
   "Abil Qos Alaudin - Teknik Komputer"
-];" />
-    <button class="add-btn" onclick="tambahSiswa()">Tambah</button>
-  </div>
-</div>
-
-<!-- Jadwal -->
-<div id="jadwal" class="card hidden">
-  <h3>Jadwal Kelas</h3>
-  <ul>
-    <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
-    <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
-  </ul>
-</div>
-
-<!-- Aktivitas -->
-<div id="aktivitas" class="card hidden">
-  <h3>Aktivitas Kelas</h3>
-  <ul id="listAktivitas"></ul>
-  <div>
-    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
-    <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
-  </div>
-</div>
-
-<!-- Pengumuman -->
-<div id="pengumuman" class="card hidden">
-  <h3>Pengumuman</h3>
-  <ul id="listPengumuman"></ul>
-  <div>
-    <input type="text" id="inputPengumuman" placeholder="Tambah pengumuman baru" />
-    <button class="add-btn" onclick="tambahPengumuman()">Tambah</button>
-  </div>
-</div>
-
-<!-- Kontak -->
-  "<p>📱 WhatsApp Group: <a href="#">https://wa.me/qr/MDESMT5RTTL4K1</a></p>
-  <p>🌐 Instagram: <a href="#">@tekom_1b</a></p>
-</div>
-
-<!-- Galeri -->
-<div id="galeri" class="card hidden">
-  <h3>Galeri Foto</h3>
-  <div class="gallery">
-    <img src="foto1.jpg" alt="Foto 1">
-    <img src="foto2.jpg" alt="Foto 2">
-    <img src="foto3.jpg" alt="Foto 3">
-  </div>
-</div>
-
-<script>
-// Musik
-const music=document.getElementById('bgMusic');
-function toggleMusic(){ music.paused?music.play():music.pause(); }
-
-// Navigasi
-function show(id){
-  ['siswa','jadwal','aktivitas','pengumuman','kontak','galeri'].forEach(i=>document.getElementById(i).classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-}
-
-// Data
-let siswa=JSON.parse(localStorage.getItem("siswa"))||["Siti Olyvia - Teknik Komputer","Yunia Arum Kusuma Dewi - Teknik Komputer"];
+];
 let aktivitas=JSON.parse(localStorage.getItem("aktivitas"))||["Diskusi kelompok","Presentasi tugas","Praktikum lab"];
 let pengumuman=JSON.parse(localStorage.getItem("pengumuman"))||["Besok ada rapat kelas","Kumpulkan tugas minggu ini"];
 
