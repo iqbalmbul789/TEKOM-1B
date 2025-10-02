@@ -4,92 +4,78 @@
 <meta charset="UTF-8">
 <title>Kelas TEKOM B</title>
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Segoe UI',Arial,sans-serif; min-height:100vh; background:#f5f7fa; color:#333; transition:0.3s; }
-header { text-align:center; padding:20px 15px; background:#0d47a1; color:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.2); position:relative; }
-header img { width:80px; height:80px; object-fit:contain; margin-bottom:6px; }
-header h1 { margin:0; font-size:24px; }
-header p { margin-top:6px; opacity:0.9; font-size:14px; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',Arial,sans-serif; min-height:100vh; background:#f5f7fa; color:#333; }
+  header {
+    text-align:center; padding:25px 20px; background:#0d47a1; color:#fff;
+    box-shadow:0 2px 5px rgba(0,0,0,0.2); position:relative;
+  }
+  header img { width:90px; height:90px; object-fit:contain; margin-bottom:8px; }
+  header h1 { margin:0; font-size:26px; }
+  header p { margin-top:6px; opacity:0.9; }
 
-#musicControl, #darkToggle {
-  position:absolute; top:14px; border:none; padding:6px 12px;
-  border-radius:20px; cursor:pointer; font-size:13px; font-weight:bold;
-  box-shadow:0 2px 6px rgba(0,0,0,0.12);
-}
-#musicControl { right:18px; background:#fff; color:#0d47a1; }
-#darkToggle { right:110px; background:#222; color:#fff; }
+  #musicControl {
+    position:absolute; top:14px; right:18px; background:#fff; border:none; padding:6px 12px;
+    border-radius:20px; cursor:pointer; font-size:14px; font-weight:bold; color:#0d47a1;
+    box-shadow:0 2px 6px rgba(0,0,0,0.12);
+  }
 
-nav { text-align:center; margin:15px 0; }
-nav button {
-  background:#1976d2; border:none; color:#fff; padding:8px 12px; margin:5px;
-  border-radius:20px; cursor:pointer; font-size:14px; transition:0.2s;
-}
-nav button.active { background:#0d47a1; box-shadow:0 2px 6px rgba(13,71,161,0.15); }
-nav button:hover { transform:translateY(-2px); }
+  nav { text-align:center; margin:18px 0; }
+  nav button {
+    background:#1976d2; border:none; color:#fff; padding:10px 14px; margin:6px;
+    border-radius:20px; cursor:pointer; font-size:14px; transition:0.2s;
+  }
+  nav button.active { background:#0d47a1; box-shadow:0 2px 6px rgba(13,71,161,0.15); }
+  nav button:hover { transform:translateY(-2px); }
 
-.card {
-  background:#fff; border-radius:12px; max-width:900px; margin:10px auto; padding:16px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.06);
-}
-h3 { color:#0d47a1; margin-bottom:10px; font-size:18px; }
-ul { list-style:none; padding:0; margin:0; }
-ul li {
-  background:#fafafa; margin:5px 0; padding:8px 10px; border-radius:8px;
-  display:flex; justify-content:space-between; align-items:center; gap:8px;
-  border:1px solid #eee;
-}
-.name { flex:1; word-break:break-word; font-size:14px; }
+  .card {
+    background:#fff; border-radius:12px; max-width:900px; margin:12px auto; padding:18px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  }
+  h3 { color:#0d47a1; margin-bottom:12px; }
+  ul { list-style:none; padding:0; margin:0; }
+  ul li {
+    background:#fafafa; margin:8px 0; padding:10px 12px; border-radius:8px;
+    display:flex; justify-content:space-between; align-items:center; gap:8px;
+    border:1px solid #eee;
+  }
+  .name { flex:1; word-break:break-word; }
 
-.delete-btn {
-  background:transparent; border:none; color:#d32f2f; cursor:pointer; font-weight:bold;
-  padding:6px 8px; border-radius:6px;
-}
-.delete-btn:hover { background:rgba(211,47,47,0.08); }
+  .delete-btn {
+    background:transparent; border:none; color:#d32f2f; cursor:pointer; font-weight:bold;
+    padding:6px 8px; border-radius:6px;
+  }
+  .delete-btn:hover { background:rgba(211,47,47,0.08); }
 
-.controls { display:flex; gap:8px; align-items:center; margin-top:10px; }
-input[type="text"] {
-  padding:8px; flex:1; border:1px solid #ccc; border-radius:8px;
-  font-size:14px;
-}
-.add-btn {
-  background:#43a047; border:none; color:white; padding:9px 14px; border-radius:8px;
-  cursor:pointer; font-weight:600; font-size:14px;
-}
-.add-btn:hover { background:#2e7d32; }
+  .controls { display:flex; gap:8px; align-items:center; margin-top:10px; }
+  input[type="text"] {
+    padding:8px; flex:1; border:1px solid #ccc; border-radius:8px;
+    font-size:14px;
+  }
+  .add-btn {
+    background:#43a047; border:none; color:white; padding:9px 14px; border-radius:8px;
+    cursor:pointer; font-weight:600;
+  }
+  .add-btn:hover { background:#2e7d32; }
 
-.hidden { display:none; }
+  .hidden { display:none; }
 
-/* Footer Sosial Media */
-footer { text-align:center; padding:15px; margin-top:15px; }
-.social-links { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
-.social-links a {
-  text-decoration:none; font-weight:700; padding:8px 14px; border-radius:20px; color:#fff;
-  display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 10px rgba(0,0,0,0.08);
-  font-size:14px;
-}
-.social-links .wa { background:#25D366; }
-.social-links .ig { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  /* Footer Sosial Media */
+  footer { text-align:center; padding:18px; margin-top:18px; }
+  .social-links { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .social-links a {
+    text-decoration:none; font-weight:700; padding:10px 16px; border-radius:24px; color:#fff;
+    display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  }
+  .social-links .wa { background:#25D366; }
+  .social-links .ig { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
 
-/* Dark mode */
-body.dark { background:#121212; color:#e0e0e0; }
-body.dark header { background:#222; color:#fff; }
-body.dark .card { background:#1e1e1e; color:#e0e0e0; }
-body.dark h3 { color:#90caf9; }
-body.dark ul li { background:#2a2a2a; border-color:#444; }
-body.dark input[type="text"] { background:#2a2a2a; color:#fff; border:1px solid #555; }
-body.dark .add-btn { background:#2e7d32; }
-
-/* Responsive: small screen (HP) */
-@media (max-width:600px){
-  header h1 { font-size:20px; }
-  header img { width:70px; height:70px; }
-  nav button { padding:6px 8px; font-size:13px; }
-  .card { margin:5px; padding:12px; }
-  ul li { margin:4px 0; padding:6px 8px; }
-  .controls { flex-direction:column; align-items:stretch; }
-  .controls input[type="text"] { width:100%; }
-  .controls .add-btn { width:100%; }
-}
+  /* small */
+  @media (max-width:600px){
+    header h1{font-size:20px}
+    nav button{padding:8px 10px}
+    .card{margin:8px}
+  }
 </style>
 </head>
 <body>
@@ -98,7 +84,6 @@ body.dark .add-btn { background:#2e7d32; }
   <img src="logo.png" alt="Logo Kelas TEKOM B">
   <h1>Kelas TEKOM B</h1>
   <p>Portal Informasi Mahasiswa</p>
-  <button id="darkToggle" onclick="toggleDark()">🌙 Mode</button>
   <button id="musicControl" onclick="toggleMusic()">🔊 Musik</button>
   <audio id="bgMusic" loop>
     <source src="musik.mp3" type="audio/mpeg">
@@ -113,47 +98,55 @@ body.dark .add-btn { background:#2e7d32; }
   <button data-target="galeri" onclick="showSection('galeri', this)">🖼 Galeri</button>
 </nav>
 
+<!-- Siswa -->
 <div id="siswa" class="card">
   <h3>Daftar Siswa</h3>
   <ul id="listSiswa"></ul>
+
   <div class="controls">
-    <input type="text" id="inputSiswa" placeholder="Tambah nama siswa baru">
+    <input type="text" id="inputSiswa" placeholder="Tambah nama siswa baru (contoh: Nama - Teknik Komputer)">
     <button class="add-btn" id="btnAddSiswa">Tambah Siswa</button>
   </div>
 </div>
 
+<!-- Jadwal -->
 <div id="jadwal" class="card hidden">
   <h3>Jadwal Kelas</h3>
   <ul>
-    <li>Senin: Ilmu Filsafat (07:30-09:00), Keamanan Informasi (09:00-10:30), Bahasa Inggris (10:30-12:00), PAI (13:00-14:30)</li>
-    <li>Selasa: PKN (07:30-09:00), Pengantar Teknologi Informasi (09:00-10:30), Sistem Komputer (10:30-12:00)</li>
-  </ul>
+    <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
+    <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
+    </ul>
 </div>
 
+<!-- Aktivitas -->
 <div id="aktivitas" class="card hidden">
   <h3>Aktivitas Kelas</h3>
   <ul id="listAktivitas"></ul>
+
   <div class="controls">
-    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas">
+    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas (misal: Presentasi tugas kelompok)">
     <button class="add-btn" id="btnAddAktivitas">Tambah Aktivitas</button>
   </div>
 </div>
 
+<!-- Pengumuman -->
 <div id="pengumuman" class="card hidden">
   <h3>Pengumuman</h3>
   <ul id="listPengumuman"></ul>
+
   <div class="controls">
-    <input type="text" id="inputPengumuman" placeholder="Tambah pengumuman">
+    <input type="text" id="inputPengumuman" placeholder="Tambah pengumuman baru">
     <button class="add-btn" id="btnAddPengumuman">Tambah Pengumuman</button>
   </div>
 </div>
 
+<!-- Galeri -->
 <div id="galeri" class="card hidden">
   <h3>Galeri Foto</h3>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:8px;">
-    <img src="foto1.jpg" alt="Foto 1" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
-    <img src="foto2.jpg" alt="Foto 2" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
-    <img src="foto3.jpg" alt="Foto 3" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px;">
+    <img src="foto1.jpg" alt="Foto 1" style="width:100%; height:110px; object-fit:cover; border-radius:8px;">
+    <img src="foto2.jpg" alt="Foto 2" style="width:100%; height:110px; object-fit:cover; border-radius:8px;">
+    <img src="foto3.jpg" alt="Foto 3" style="width:100%; height:110px; object-fit:cover; border-radius:8px;">
   </div>
 </div>
 
@@ -165,50 +158,230 @@ body.dark .add-btn { background:#2e7d32; }
 </footer>
 
 <script>
+/* ============================
+   Data awal (lengkap)
+   ============================ */
 const defaultSiswa = [
-  "Siti Olyvia - Teknik Komputer","Yunia Arum Kusuma Dewi - Teknik Komputer","Nayla Erli Suci Ramadhani - Teknik Komputer",
-  "Tri Wahyuni - Teknik Komputer","Dela Ahmad Anisa Putri - Teknik Komputer","Indria Sagita - Teknik Komputer",
-  "Rara Sevira Anggraini - Teknik Komputer","Muhammad Enggar Ilman Nafian - Teknik Komputer","Vico Algibran - Teknik Komputer",
-  "Arief Ahmadi - Teknik Komputer","Widya Ayu Gistala - Teknik Komputer","Muhammad Aeris Angghi Effendi - Teknik Komputer",
-  "Sudarman - Teknik Komputer","Fauzan Aziz - Teknik Komputer","Eza Julian - Teknik Komputer",
-  "Krisda Apriantika - Teknik Komputer","Dwi Ramadhanna - Teknik Komputer","Repy Septiyawan - Teknik Komputer",
-  "Khutrotul Jannah - Teknik Komputer","Aisyiyah Qolbi - Teknik Komputer","Bakas Minanga Jaya Laga - Teknik Komputer",
-  "Anisa Hanifatun Abdilah - Teknik Komputer","Irvan Ali Rosyadi - Teknik Komputer","Muhammad Ghazian Alpha Hazazi - Teknik Komputer",
-  "Naufal Halim - Teknik Komputer","Riko Wiratama - Teknik Komputer","Sarina - Teknik Komputer",
-  "Widiya Wulansari - Teknik Komputer","Yuga Azrial Maulana - Teknik Komputer","Abdurrahman Ghozie - Teknik Komputer",
-  "Antoni Wijaya - Teknik Komputer","Arief Junaidi - Teknik Komputer","Aulia Malik Fadhillah - Teknik Komputer",
-  "Ulfi Maula - Teknik Komputer","Kholillurrohman - Teknik Komputer","Mugi Handoyo - Teknik Komputer",
-  "Rahmat - Teknik Komputer","Nur Resepa H - Teknik Komputer","Nadia Nur Azzahraa - Teknik Komputer",
-  "Muhammad Iqbal Nugroho - Teknik Komputer","M. Yusuf Tegar - Teknik Komputer","M. Arif Wahyudi - Teknik Komputer",
-  "M. Bustomi - Teknik Komputer","Faqih Hidayat - Teknik Komputer","Cinta Pebrian - Teknik Komputer",
-  "Deastine Suherlan - Teknik Komputer","Anjeli Letparia - Teknik Komputer","Alfan Fadla - Teknik Komputer",
-  "Aditya Sanjaya - Teknik Komputer","Abil Qos Alaudin - Teknik Komputer"
+  "Siti Olyvia - Teknik Komputer",
+  "Yunia Arum Kusuma Dewi - Teknik Komputer",
+  "Nayla Erli Suci Ramadhani - Teknik Komputer",
+  "Tri Wahyuni - Teknik Komputer",
+  "Dela Ahmad Anisa Putri - Teknik Komputer",
+  "Indria Sagita - Teknik Komputer",
+  "Rara Sevira Anggraini - Teknik Komputer",
+  "Muhammad Enggar Ilman Nafian - Teknik Komputer",
+  "Vico Algibran - Teknik Komputer",
+  "Arief Ahmadi - Teknik Komputer",
+  "Widya Ayu Gistala - Teknik Komputer",
+  "Muhammad Aeris Angghi Effendi - Teknik Komputer",
+  "Sudarman - Teknik Komputer",
+  "Fauzan Aziz - Teknik Komputer",
+  "Eza Julian - Teknik Komputer",
+  "Krisda Apriantika - Teknik Komputer",
+  "Dwi Ramadhanna - Teknik Komputer",
+  "Repy Septiyawan - Teknik Komputer",
+  "Khutrotul Jannah - Teknik Komputer",
+  "Aisyiyah Qolbi - Teknik Komputer",
+  "Bakas Minanga Jaya Laga - Teknik Komputer",
+  "Anisa Hanifatun Abdilah - Teknik Komputer",
+  "Irvan Ali Rosyadi - Teknik Komputer",
+  "Muhammad Ghazian Alpha Hazazi - Teknik Komputer",
+  "Naufal Halim - Teknik Komputer",
+  "Riko Wiratama - Teknik Komputer",
+  "Sarina - Teknik Komputer",
+  "Widiya Wulansari - Teknik Komputer",
+  "Yuga Azrial Maulana - Teknik Komputer",
+  "Abdurrahman Ghozie - Teknik Komputer",
+  "Antoni Wijaya - Teknik Komputer",
+  "Arief Junaidi - Teknik Komputer",
+  "Aulia Malik Fadhillah - Teknik Komputer",
+  "Ulfi Maula - Teknik Komputer",
+  "Kholillurrohman - Teknik Komputer",
+  "Mugi Handoyo - Teknik Komputer",
+  "Rahmat - Teknik Komputer",
+  "Nur Resepa H - Teknik Komputer",
+  "Nadia Nur Azzahraa - Teknik Komputer",
+  "Muhammad Iqbal Nugroho - Teknik Komputer",
+  "M. Yusuf Tegar - Teknik Komputer",
+  "M. Arif Wahyudi - Teknik Komputer",
+  "M. Bustomi - Teknik Komputer",
+  "Faqih Hidayat - Teknik Komputer",
+  "Cinta Pebrian - Teknik Komputer",
+  "Deastine Suherlan - Teknik Komputer",
+  "Anjeli Letparia - Teknik Komputer",
+  "Alfan Fadla - Teknik Komputer",
+  "Aditya Sanjaya - Teknik Komputer",
+  "Abil Qos Alaudin - Teknik Komputer"
 ];
 
-const defaultAktivitas = ["Presentasi tugas kelompok","Diskusi kelas","Praktikum di laboratorium"];
-const defaultPengumuman = ["Minggu libur, besok mau tidur pulas"];
+const defaultAktivitas = [
+  "Presentasi tugas kelompok",
+  "Diskusi kelas",
+  "Praktikum di laboratorium",
+  "Mengerjakan kuis",
+  "Ujian Tengah Semester (UTS)",
+  "Ujian Akhir Semester (UAS)",
+  "Belajar mandiri di kelas",
+  "Rapat kelas bersama dosen wali"
+];
 
+const defaultPengumuman = [
+  "Minggu libur, besok mau tidur pulas"
+];
+
+/* ============================
+   Ambil / simpan localStorage
+   ============================ */
 let siswa = JSON.parse(localStorage.getItem("siswa")) || defaultSiswa.slice();
 let aktivitas = JSON.parse(localStorage.getItem("aktivitas")) || defaultAktivitas.slice();
 let pengumuman = JSON.parse(localStorage.getItem("pengumuman")) || defaultPengumuman.slice();
 
-function simpanSemua(){ localStorage.setItem("siswa", JSON.stringify(siswa)); localStorage.setItem("aktivitas", JSON.stringify(aktivitas)); localStorage.setItem("pengumuman", JSON.stringify(pengumuman)); }
+function simpanSemua(){
+  localStorage.setItem("siswa", JSON.stringify(siswa));
+  localStorage.setItem("aktivitas", JSON.stringify(aktivitas));
+  localStorage.setItem("pengumuman", JSON.stringify(pengumuman));
+}
 
-function renderSiswa(){ const ul = document.getElementById('listSiswa'); ul.innerHTML=''; siswa.forEach((nama, idx)=>{ const li=document.createElement('li'); const span=document.createElement('div'); span.className='name'; span.textContent=nama; const del=document.createElement('button'); del.className='delete-btn'; del.innerHTML='❌'; del.title='Hapus siswa'; del.addEventListener('click',()=>{ if(confirm(`Hapus "${nama}"?`)){ siswa.splice(idx,1); simpanSemua(); renderSiswa(); } }); li.appendChild(span); li.appendChild(del); ul.appendChild(li); }); }
+/* ============================
+   Render functions
+   ============================ */
+function renderSiswa(){
+  const ul = document.getElementById('listSiswa');
+  ul.innerHTML = '';
+  siswa.forEach((nama, idx) => {
+    const li = document.createElement('li');
+    const span = document.createElement('div');
+    span.className = 'name';
+    span.textContent = nama;
+    const del = document.createElement('button');
+    del.className = 'delete-btn';
+    del.title = 'Hapus siswa';
+    del.innerHTML = '❌';
+    del.addEventListener('click', () => {
+      if(confirm(`Hapus "${nama}" dari daftar?`)){
+        siswa.splice(idx,1); simpanSemua(); renderSiswa();
+      }
+    });
+    li.appendChild(span);
+    li.appendChild(del);
+    ul.appendChild(li);
+  });
+}
 
-function renderAktivitas(){ const ul = document.getElementById('listAktivitas'); ul.innerHTML=''; aktivitas.forEach((item, idx)=>{ const li=document.createElement('li'); const span=document.createElement('div'); span.className='name'; span.textContent=item; const del=document.createElement('button'); del.className='delete-btn'; del.innerHTML='❌'; del.title='Hapus aktivitas'; del.addEventListener('click',()=>{ if(confirm(`Hapus aktivitas "${item}"?`)){ aktivitas.splice(idx,1); simpanSemua(); renderAktivitas(); } }); li.appendChild(span); li.appendChild(del); ul.appendChild(li); }); }
+function renderAktivitas(){
+  const ul = document.getElementById('listAktivitas');
+  ul.innerHTML = '';
+  aktivitas.forEach((item, idx) => {
+    const li = document.createElement('li');
+    const span = document.createElement('div');
+    span.className = 'name';
+    span.textContent = item;
+    const del = document.createElement('button');
+    del.className = 'delete-btn';
+    del.innerHTML = '❌';
+    del.title='Hapus aktivitas';
+    del.addEventListener('click', () => {
+      if(confirm(`Hapus aktivitas "${item}"?`)){
+        aktivitas.splice(idx,1); simpanSemua(); renderAktivitas();
+      }
+    });
+    li.appendChild(span); li.appendChild(del); ul.appendChild(li);
+  });
+}
 
-function renderPengumuman(){ const ul=document.getElementById('listPengumuman'); ul.innerHTML=''; pengumuman.forEach((item, idx)=>{ const li=document.createElement('li'); const span=document.createElement('div'); span.className='name'; span.textContent=item; const del=document.createElement('button'); del.className='delete-btn'; del.innerHTML='❌'; del.title='Hapus pengumuman'; del.addEventListener('click',()=>{ if(confirm(`Hapus pengumuman "${item}"?`)){ pengumuman.splice(idx,1); simpanSemua(); renderPengumuman(); } }); li.appendChild(span); li.appendChild(del); ul.appendChild(li); }); }
+function renderPengumuman(){
+  const ul = document.getElementById('listPengumuman');
+  ul.innerHTML = '';
+  pengumuman.forEach((item, idx) => {
+    const li = document.createElement('li');
+    const span = document.createElement('div');
+    span.className = 'name';
+    span.textContent = item;
+    const del = document.createElement('button');
+    del.className = 'delete-btn';
+    del.innerHTML = '❌';
+    del.title='Hapus pengumuman';
+    del.addEventListener('click', () => {
+      if(confirm(`Hapus pengumuman "${item}"?`)){
+        pengumuman.splice(idx,1); simpanSemua(); renderPengumuman();
+      }
+    });
+    li.appendChild(span); li.appendChild(del); ul.appendChild(li);
+  });
+}
 
-function renderAll(){ renderSiswa(); renderAktivitas(); renderPengumuman(); }
+/* ============================
+   Show section + nav active
+   ============================ */
+function showSection(id, btnEl){
+  // hide all
+  ['siswa','jadwal','aktivitas','pengumuman','galeri'].forEach(k=>{
+    const el = document.getElementById(k);
+    if(el) el.classList.add('hidden');
+  });
+  // show chosen
+  const target = document.getElementById(id);
+  if(target) target.classList.remove('hidden');
 
-function showSection(id, btnEl){ ['siswa','jadwal','aktivitas','pengumuman','galeri'].forEach(k=>{document.getElementById(k).classList.add('hidden');}); document.getElementById(id).classList.remove('hidden'); document.querySelectorAll('#mainNav button').forEach(b=>b.classList.remove('active')); if(btnEl) btnEl.classList.add('active'); renderAll(); }
+  // nav active class
+  document.querySelectorAll('#mainNav button').forEach(b => b.classList.remove('active'));
+  if(btnEl) btnEl.classList.add('active');
 
-document.getElementById('btnAddSiswa').addEventListener('click', ()=>{ const v=document.getElementById('inputSiswa').value.trim(); if(!v){ alert('Nama tidak boleh kosong'); return; } siswa.push(v); document.getElementById('inputSiswa').value=''; simpanSemua(); renderSiswa(); });
-document.getElementById('btnAddAktivitas').addEventListener('click', ()=>{ const v=document.getElementById('inputAktivitas').value.trim(); if(!v){ alert('Isi aktivitas'); return; } aktivitas.push(v); document.getElementById('inputAktivitas').value=''; simpanSemua(); renderAktivitas(); });
-document.getElementById('btnAddPengumuman').addEventListener('click', ()=>{ const v=document.getElementById('inputPengumuman').value.trim(); if(!v){ alert('Isi pengumuman'); return; } pengumuman.push(v); document.getElementById('inputPengumuman').value=''; simpanSemua(); renderPengumuman(); });
+  // render content (to ensure lists updated)
+  renderAll();
+}
 
-renderAll(); showSection('siswa', document.querySelector('#mainNav button[data-target="siswa"]'));
+/* ============================
+   add handlers
+   ============================ */
+document.getElementById('btnAddSiswa').addEventListener('click', () => {
+  const v = document.getElementById('inputSiswa').value.trim();
+  if(!v){ alert('Nama tidak boleh kosong'); return; }
+  siswa.push(v); document.getElementById('inputSiswa').value=''; simpanSemua(); renderSiswa();
+});
 
-const music=document.getElementById('bgMusic');
-function toggleMusic(){ if(!music) return; if(music.paused){ music.play(); document.getElementById('musicControl').textContent='
+document.getElementById('btnAddAktivitas').addEventListener('click', () => {
+  const v = document.getElementById('inputAktivitas').value.trim();
+  if(!v){ alert('Isi aktivitas'); return; }
+  aktivitas.push(v); document.getElementById('inputAktivitas').value=''; simpanSemua(); renderAktivitas();
+});
+
+document.getElementById('btnAddPengumuman').addEventListener('click', () => {
+  const v = document.getElementById('inputPengumuman').value.trim();
+  if(!v){ alert('Isi pengumuman'); return; }
+  pengumuman.push(v); document.getElementById('inputPengumuman').value=''; simpanSemua(); renderPengumuman();
+});
+
+/* ============================
+   Render all initial
+   ============================ */
+function renderAll(){
+  renderSiswa(); renderAktivitas(); renderPengumuman();
+}
+renderAll();
+
+/* Tampilkan default section siswa */
+document.querySelectorAll('#mainNav button').forEach(b=>{
+  if(b.dataset.target === 'siswa'){ b.classList.add('active'); }
+});
+showSection('siswa', document.querySelector('#mainNav button[data-target="siswa"]'));
+
+/* ============================
+   Musik control
+   ============================ */
+const music = document.getElementById('bgMusic');
+function toggleMusic(){
+  if(!music) return;
+  if(music.paused){ music.play(); document.getElementById('musicControl').textContent='🔈 Stop'; }
+  else { music.pause(); music.currentTime = 0; document.getElementById('musicControl').textContent='🔊 Musik'; }
+}
+
+/* ============================
+   Save on unload (safety)
+   ============================ */
+window.addEventListener('beforeunload', () => {
+  simpanSemua();
+});
+</script>
+</body>
+</html>
