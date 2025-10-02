@@ -2,158 +2,177 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Kelas TEKOM B - Dark Neon Edition</title>
+<title>Kelas TEKOM B - AI Chat</title>
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Segoe UI',Arial,sans-serif; min-height:100vh; color:#fff; background:#0c0c0c; overflow-x:hidden; position:relative; }
-canvas#bgCanvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
-
-#startScreen {
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center;
-  font-size:28px; font-weight:bold; cursor:pointer; z-index:1000; color:#0ff;
-  text-shadow:0 0 10px #0ff, 0 0 20px #0ff;
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
-
 header {
-  text-align:center; padding:30px 20px; background:#050505; border-bottom:2px solid #0ff;
-  text-shadow:0 0 5px #0ff,0 0 10px #0ff; position:relative;
+  text-align: center;
+  padding: 20px;
+  background: #1a237e;
+  color: white;
 }
-header img { width:140px; height:140px; border-radius:50%; border:3px solid #0ff; margin-bottom:15px; object-fit:cover; }
-header h1 { font-size:34px; color:#0ff; }
-header h2 { font-weight:400; font-size:20px; color:#0ff; }
-
-#musicControl {
-  position:absolute; top:15px; right:20px; background:#0ff22a22; border:none; padding:8px 12px; border-radius:20px; cursor:pointer;
-  color:#0ff; font-weight:bold; text-shadow:0 0 5px #0ff; transition:0.3s;
+header img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
-#musicControl:hover { background:#0ff44aa2; }
-
-nav { text-align:center; margin:25px 0; }
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+header h2 {
+  margin: 5px 0 0;
+  font-weight: normal;
+  font-size: 18px;
+}
+nav {
+  text-align: center;
+  margin: 20px 0;
+}
 nav button {
-  background:#000; border:2px solid #0ff; color:#0ff; padding:12px 20px; margin:5px; border-radius:30px;
-  cursor:pointer; font-size:16px; box-shadow:0 0 10px #0ff, 0 0 20px #0ff; transition:0.3s;
+  background: #3949ab;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
 }
-nav button:hover { transform:scale(1.1); box-shadow:0 0 15px #0ff,0 0 25px #0ff; }
-
+nav button:hover {
+  background: #1a237e;
+}
 .card {
-  background:#111; border:2px solid #0ff; border-radius:18px; max-width:700px; margin:20px auto; padding:25px;
-  box-shadow:0 0 10px #0ff,0 0 20px #0ff; transition: transform 0.3s;
+  background: white;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-.card:hover { transform:translateY(-5px); }
-h3 { color:#0ff; margin-bottom:15px; text-shadow:0 0 5px #0ff; }
-ul { list-style:none; padding:0; }
+h3 {
+  color: #1a237e;
+  margin-bottom: 15px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
 ul li {
-  background:#000; margin:10px 0; padding:12px 18px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;
-  transition: all 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
-  opacity:1; transform:translateX(0); border:1px solid #0ff;
+  background: #f0f0f0;
+  margin: 5px 0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-ul li.adding { opacity:0; transform:translateX(-50px); }
-ul li.removing { opacity:0; transform:translateX(50px); }
-ul li:hover { box-shadow:0 0 10px #0ff,0 0 20px #0ff; }
-
-.delete-btn { color:red; cursor:pointer; font-weight:bold; }
+.delete-btn {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
 input[type="text"] {
-  padding:12px; width:70%; border:1px solid #0ff; border-radius:10px; margin-right:5px; background:#000; color:#0ff;
-  transition:0.3s; text-shadow:0 0 5px #0ff;
+  padding: 8px;
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
 }
-input[type="text"]:focus { border-color:#0ff; outline:none; box-shadow:0 0 10px #0ff; }
-.add-btn { background:#0ff; border:none; color:#000; padding:10px 18px; border-radius:10px; cursor:pointer; transition:0.3s; }
-.add-btn:hover { box-shadow:0 0 10px #0ff,0 0 20px #0ff; transform:scale(1.05); }
-
-.hidden { display:none; }
+.add-btn {
+  background: #1a237e;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add-btn:hover {
+  background: #3949ab;
+}
+.hidden {
+  display: none;
+}
+#chatOutput {
+  height: 200px;
+  overflow-y: auto;
+  background: #f0f0f0;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
 </style>
 </head>
 <body>
 
-<canvas id="bgCanvas"></canvas>
-<div id="startScreen">Klik untuk memulai & musik 🎵</div>
-
 <header>
-  <img src="logo.png" alt="Logo Kelas TEKOM B">
-  <h1>Kelas TEKOM B</h1>
-  <h2>Computer Engineering</h2>
-  <button id="musicControl" onclick="toggleMusic()">🔊 Musik</button>
-  <audio id="bgMusic" loop>
-    <source src="musik.mp3" type="audio/mpeg">
-  </audio>
+<img src="logo.png" alt="Logo Kelas TEKOM B">
+<h1>Kelas TEKOM B</h1>
+<h2>Computer Engineering</h2>
+<button id="musicControl" onclick="toggleMusic()">🔊 Musik</button>
+<audio id="bgMusic" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
 </header>
 
 <nav>
-  <button onclick="show('siswa')">📘 Daftar Siswa</button>
-  <button onclick="show('jadwal')">📅 Jadwal Kelas</button>
-  <button onclick="show('aktivitas')">📝 Aktivitas</button>
+<button onclick="show('siswa')">Daftar Siswa</button>
+<button onclick="show('jadwal')">Jadwal Kelas</button>
+<button onclick="show('aktivitas')">Aktivitas</button>
+<button onclick="show('chat')">Chat AI</button>
 </nav>
 
 <div id="siswa" class="card">
-  <h3>Daftar Siswa</h3>
-  <ul id="listSiswa"></ul>
-  <div>
-    <input type="text" id="inputSiswa" placeholder="Masukkan nama siswa" />
-    <button class="add-btn" onclick="tambahSiswa()">Tambah</button>
-  </div>
+<h3>Daftar Siswa</h3>
+<ul id="listSiswa"></ul>
+<div>
+<input type="text" id="inputSiswa" placeholder="Masukkan nama siswa" />
+<button class="add-btn" onclick="tambahSiswa()">Tambah</button>
+</div>
 </div>
 
 <div id="jadwal" class="card hidden">
-  <h3>Jadwal Kelas</h3>
-  <ul>
-    <li>Senin: Ilmu Filsafat (07:30-09:00), Keamanan Informasi (09:00-10:30), Bahasa Inggris (10:30-12:00), PAI (13:00-14:30)</li>
-    <li>Selasa: PKN (07:30-09:00), Pengantar TI (09:00-10:30), Sistem Komputer (10:30-12:00)</li>
-  </ul>
+<h3>Jadwal Kelas</h3>
+<ul>
+<li>Senin: Ilmu Filsafat, Keamanan Informasi, Bahasa Inggris, PAI</li>
+<li>Selasa: PKN, Pengantar TI, Sistem Komputer</li>
+</ul>
 </div>
 
 <div id="aktivitas" class="card hidden">
-  <h3>Aktivitas Kelas</h3>
-  <ul id="listAktivitas"></ul>
-  <div>
-    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
-    <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
-  </div>
+<h3>Aktivitas Kelas</h3>
+<ul id="listAktivitas"></ul>
+<div>
+<input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
+<button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
+</div>
+</div>
+
+<div id="chat" class="card hidden">
+<h3>Chat AI - Tanya ChatGPT</h3>
+<div id="chatOutput"></div>
+<input type="text" id="chatInput" placeholder="Tanya sesuatu..." />
+<button class="add-btn" onclick="kirimChat()">Kirim</button>
 </div>
 
 <script>
-// Background partikel neon
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-let particles = [];
-for(let i=0;i<150;i++){
-  particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1.5, dx:(Math.random()-0.5)*1.2, dy:(Math.random()-0.5)*1.2});
-}
-let mouse = {x:null, y:null};
-canvas.addEventListener('mousemove', e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle='rgba(0,255,255,0.8)';
-    ctx.fill();
-    p.x+=p.dx; p.y+=p.dy;
-    if(mouse.x && mouse.y){
-      const dx=p.x-mouse.x, dy=p.y-mouse.y, dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<120){ p.x+=dx*0.02; p.y+=dy*0.02; }
-    }
-    if(p.x>canvas.width)p.x=0;if(p.x<0)p.x=canvas.width;
-    if(p.y>canvas.height)p.y=0;if(p.y<0)p.y=canvas.height;
-  });
-  requestAnimationFrame(animate);
-}
-animate();
-window.onresize=()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; };
-
-// Musik
 const music = document.getElementById('bgMusic');
-const startScreen = document.getElementById('startScreen');
-startScreen.onclick=()=>{ music.play(); startScreen.style.display='none'; };
-function toggleMusic(){ music.paused?music.play():music.pause(); }
+function toggleMusic(){music.paused?music.play():music.pause();}
 
-// Navigasi
-function show(id){ ['siswa','jadwal','aktivitas'].forEach(i=>document.getElementById(i).classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); }
+function show(id){
+  ['siswa','jadwal','aktivitas','chat'].forEach(i=>document.getElementById(i).classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
 
-// Data
-let siswa = JSON.parse(localStorage.getItem("siswa")) || [
+ let siswa = JSON.parse(localStorage.getItem("siswa")) || [
   "Siti Olyvia - Teknik Komputer",
   "Yunia Arum Kusuma Dewi - Teknik Komputer",
   "Nayla Erli Suci Ramadhani - Teknik Komputer",
@@ -205,29 +224,51 @@ let siswa = JSON.parse(localStorage.getItem("siswa")) || [
   "Aditya Sanjaya - Teknik Komputer",
   "Abil Qos Alaudin - Teknik Komputer"
 ];
-let aktivitas = JSON.parse(localStorage.getItem("aktivitas")) || ["Diskusi kelompok","Presentasi tugas","Praktikum lab"];
+let aktivitas=JSON.parse(localStorage.getItem("aktivitas"))||["Diskusi kelompok","Presentasi tugas","Praktikum lab"];
 
 function renderList(arr,id,removeFn){
-  const list=document.getElementById(id); list.innerHTML='';
+  const list=document.getElementById(id);
+  list.innerHTML='';
   arr.forEach((item,i)=>{
-    const li=document.createElement('li'); li.classList.add('adding');
+    const li=document.createElement('li');
     li.innerHTML=`${item} <span class="delete-btn" onclick="${removeFn}(${i}, this)">❌</span>`;
     list.appendChild(li);
-    setTimeout(()=>li.classList.remove('adding'),50);
   });
 }
-function renderSiswa(){ renderList(siswa,'listSiswa','hapusSiswa'); }
-function renderAktivitas(){ renderList(aktivitas,'listAktivitas','hapusAktivitas'); }
+function renderSiswa(){renderList(siswa,'listSiswa','hapusSiswa');}
+function renderAktivitas(){renderList(aktivitas,'listAktivitas','hapusAktivitas');}
 
-function tambahSiswa(){ let n=document.getElementById('inputSiswa').value.trim(); if(!n){alert('Nama siswa tidak boleh kosong!'); return;} siswa.push(n); simpanData(); renderSiswa(); document.getElementById('inputSiswa').value=''; }
-function tambahAktivitas(){ let a=document.getElementById('inputAktivitas').value.trim(); if(!a){alert('Aktivitas tidak boleh kosong!'); return;} aktivitas.push(a); simpanData(); renderAktivitas(); document.getElementById('inputAktivitas').value=''; }
+function tambahSiswa(){let n=document.getElementById('inputSiswa').value.trim(); if(!n){alert('Nama siswa tidak boleh kosong'); return;} siswa.push(n); simpanData(); renderSiswa(); document.getElementById('inputSiswa').value='';}
+function tambahAktivitas(){let a=document.getElementById('inputAktivitas').value.trim(); if(!a){alert('Aktivitas tidak boleh kosong'); return;} aktivitas.push(a); simpanData(); renderAktivitas(); document.getElementById('inputAktivitas').value='';}
 
-function hapusSiswa(i,el){ const li=el.parentElement; li.classList.add('removing'); setTimeout(()=>{ siswa.splice(i,1); simpanData(); renderSiswa(); },400); }
-function hapusAktivitas(i,el){ const li=el.parentElement; li.classList.add('removing'); setTimeout(()=>{ aktivitas.splice(i,1); simpanData(); renderAktivitas(); },400); }
+function hapusSiswa(i,el){siswa.splice(i,1); simpanData(); renderSiswa();}
+function hapusAktivitas(i,el){aktivitas.splice(i,1); simpanData(); renderAktivitas();}
 
-function simpanData(){ localStorage.setItem("siswa",JSON.stringify(siswa)); localStorage.setItem("aktivitas",JSON.stringify(aktivitas)); }
+function simpanData(){localStorage.setItem("siswa",JSON.stringify(siswa)); localStorage.setItem("aktivitas",JSON.stringify(aktivitas));}
 
 renderSiswa(); renderAktivitas();
+
+// ChatGPT
+async function kirimChat(){
+  const input=document.getElementById('chatInput').value.trim();
+  if(!input){alert('Masukkan pertanyaan!');return;}
+  const output=document.getElementById('chatOutput');
+  output.innerHTML+=`<p><strong>Anda:</strong> ${input}</p>`;
+  output.scrollTop=output.scrollHeight;
+  try{
+    const res=await fetch('http://localhost:3000/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({prompt: input})
+    });
+    const data=await res.json();
+    output.innerHTML+=`<p><strong>ChatGPT:</strong> ${data.reply}</p>`;
+    output.scrollTop=output.scrollHeight;
+    document.getElementById('chatInput').value='';
+  }catch(err){
+    output.innerHTML+=`<p style="color:red;"><strong>Error:</strong> ${err}</p>`;
+  }
+}
 </script>
 </body>
 </html>
