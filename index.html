@@ -1,278 +1,236 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>Kelas TEKOM B - Computer Engineering</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      text-align: center;
-      padding: 30px 20px;
-      background: #0d47a1;
-      color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    header img {
-      width: 140px;
-      height: 140px;
-      object-fit: contain;
-      margin-bottom: 15px;
-    }
-    header h1 { margin: 0; font-size: 28px; }
-    header h2 { margin: 5px 0 0; font-weight: 400; font-size: 18px; }
+<meta charset="UTF-8">
+<title>Kelas TEKOM B - Computer Engineering</title>
+<style>
+  /* Reset dasar */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    color: #333;
+    min-height: 100vh;
+    transition: background 0.5s;
+  }
 
-    nav {
-      text-align: center;
-      margin: 20px 0;
-    }
-    nav button {
-      background: #1976d2;
-      border: none;
-      color: white;
-      padding: 10px 16px;
-      margin: 5px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: 0.3s;
-    }
-    nav button:hover {
-      background: #0d47a1;
-      transform: scale(1.05);
-    }
+  /* Header */
+  header {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(90deg, #0d47a1, #1976d2);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  header img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+  header h1 { font-size: 32px; margin-bottom: 5px; }
+  header h2 { font-weight: 400; font-size: 20px; }
 
-    .card {
-      background: white;
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      animation: fadeIn 0.5s ease-in-out;
-    }
-    h3 { color: #0d47a1; margin-top: 0; }
+  /* Backsound toggle */
+  #musicControl {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #ffffff88;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  #musicControl:hover { background: #ffffffcc; }
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      background: #f5f5f5;
-      margin: 5px 0;
-      padding: 8px 12px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: 0.2s;
-    }
-    ul li:hover { background: #e3f2fd; }
+  /* Navigasi */
+  nav {
+    text-align: center;
+    margin: 25px 0;
+  }
+  nav button {
+    background: #1976d2;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    margin: 5px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    transition: 0.3s;
+  }
+  nav button:hover {
+    background: #0d47a1;
+    transform: scale(1.1);
+  }
 
-    .delete-btn {
-      color: red;
-      cursor: pointer;
-      font-weight: bold;
-    }
+  /* Card */
+  .card {
+    background: white;
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  h3 { color: #0d47a1; margin-bottom: 15px; }
 
-    input[type="text"] {
-      padding: 8px;
-      width: 70%;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-right: 5px;
-    }
-    .add-btn {
-      background: #43a047;
-      border: none;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .add-btn:hover { background: #2e7d32; }
+  ul { list-style: none; padding: 0; }
+  ul li {
+    background: #f5f5f5;
+    margin: 8px 0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+  }
+  ul li:hover { background: #e3f2fd; }
 
-    .hidden { display: none; }
+  .delete-btn { color: red; cursor: pointer; font-weight: bold; }
+  input[type="text"] {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 5px;
+    transition: 0.3s;
+  }
+  input[type="text"]:focus { border-color: #1976d2; outline: none; }
+  .add-btn {
+    background: #43a047;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .add-btn:hover { background: #2e7d32; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  .hidden { display: none; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo Kelas TEKOM B">
-    <h1>Kelas TEKOM B</h1>
-    <h2>Computer Engineering</h2>
-  </header>
+<header>
+  <img src="logo.png" alt="Logo Kelas TEKOM B">
+  <h1>Kelas TEKOM B</h1>
+  <h2>Computer Engineering</h2>
+  <button id="musicControl" onclick="toggleMusic()">🔊 Musik</button>
+  <audio id="bgMusic" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
+</header>
 
-  <nav>
-    <button onclick="show('siswa')">📘 Daftar Siswa</button>
-    <button onclick="show('jadwal')">📅 Jadwal Kelas</button>
-    <button onclick="show('aktivitas')">📝 Aktivitas</button>
-  </nav>
+<nav>
+  <button onclick="show('siswa')">📘 Daftar Siswa</button>
+  <button onclick="show('jadwal')">📅 Jadwal Kelas</button>
+  <button onclick="show('aktivitas')">📝 Aktivitas</button>
+</nav>
 
-  <div id="siswa" class="card">
-    <h3>Daftar Siswa</h3>
-    <ul id="listSiswa"></ul>
-    <div>
-      <input type="text" id="inputSiswa" placeholder="Masukkan nama siswa" />
-      <button class="add-btn" onclick="tambahSiswa()">Tambah</button>
-    </div>
+<div id="siswa" class="card">
+  <h3>Daftar Siswa</h3>
+  <ul id="listSiswa"></ul>
+  <div>
+    <input type="text" id="inputSiswa" placeholder="Masukkan nama siswa" />
+    <button class="add-btn" onclick="tambahSiswa()">Tambah</button>
   </div>
+</div>
 
-  <div id="jadwal" class="card hidden">
-    <h3>Jadwal Kelas</h3>
-    <ul>
-      <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
-      <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
-    </ul>
+<div id="jadwal" class="card hidden">
+  <h3>Jadwal Kelas</h3>
+  <ul>
+    <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
+    <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
+  </ul>
+</div>
+
+<div id="aktivitas" class="card hidden">
+  <h3>Aktivitas Kelas</h3>
+  <ul id="listAktivitas"></ul>
+  <div>
+    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
+    <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
   </div>
+</div>
 
-  <div id="aktivitas" class="card hidden">
-    <h3>Aktivitas Kelas</h3>
-    <ul id="listAktivitas"></ul>
-    <div>
-      <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
-      <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
-    </div>
-  </div>
+<script>
+function show(id) {
+  ['siswa','jadwal','aktivitas'].forEach(i => document.getElementById(i).classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
 
-  <script>
-    function show(id) {
-      document.getElementById('siswa').classList.add('hidden');
-      document.getElementById('jadwal').classList.add('hidden');
-      document.getElementById('aktivitas').classList.add('hidden');
-      document.getElementById(id).classList.remove('hidden');
-    }
-
-     let siswa = JSON.parse(localStorage.getItem("siswa")) || [
+let siswa = JSON.parse(localStorage.getItem("siswa")) || [
   "Siti Olyvia - Teknik Komputer",
   "Yunia Arum Kusuma Dewi - Teknik Komputer",
   "Nayla Erli Suci Ramadhani - Teknik Komputer",
-  "Tri Wahyuni - Teknik Komputer",
-  "Dela Ahmad Anisa Putri - Teknik Komputer",
-  "Indria Sagita - Teknik Komputer",
-  "Rara Sevira Anggraini - Teknik Komputer",
-  "Muhammad Enggar Ilman Nafian - Teknik Komputer",
-  "Vico Algibran - Teknik Komputer",
-  "Arief Ahmadi - Teknik Komputer",
-  "Widya Ayu Gistala - Teknik Komputer",
-  "Muhammad Aeris Angghi Effendi - Teknik Komputer",
-  "Sudarman - Teknik Komputer",
-  "Fauzan Aziz - Teknik Komputer",
-  "Eza Julian - Teknik Komputer",
-  "Krisda Apriantika - Teknik Komputer",
-  "Dwi Ramadhanna - Teknik Komputer",
-  "Repy Septiyawan - Teknik Komputer",
-  "Khutrotul Jannah - Teknik Komputer",
-  "Aisyiyah Qolbi - Teknik Komputer",
-  "Bakas Minanga Jaya Laga - Teknik Komputer",
-  "Anisa Hanifatun Abdilah - Teknik Komputer",
-  "Irvan Ali Rosyadi - Teknik Komputer",
-  "Muhammad Ghazian Alpha Hazazi - Teknik Komputer",
-  "Naufal Halim - Teknik Komputer",
-  "Riko Wiratama - Teknik Komputer",
-  "Sarina - Teknik Komputer",
-  "Widiya Wulansari - Teknik Komputer",
-  "Yuga Azrial Maulana - Teknik Komputer",
-  "Abdurrahman Ghozie - Teknik Komputer",
-  "Antoni Wijaya - Teknik Komputer",
-  "Arief Junaidi - Teknik Komputer",
-  "Aulia Malik Fadhillah - Teknik Komputer",
-  "Ulfi Maula - Teknik Komputer",
-  "Kholillurrohman - Teknik Komputer",
-  "Mugi Handoyo - Teknik Komputer",
-  "Rahmat - Teknik Komputer",
-  "Nur Resepa H - Teknik Komputer",
-  "Nadia Nur Azzahraa - Teknik Komputer",
-  "Muhammad Iqbal Nugroho - Teknik Komputer",
-  "M. Yusuf Tegar - Teknik Komputer",
-  "M. Arif Wahyudi - Teknik Komputer",
-  "M. Bustomi - Teknik Komputer",
-  "Faqih Hidayat - Teknik Komputer",
-  "Cinta Pebrian - Teknik Komputer",
-  "Deastine Suherlan - Teknik Komputer",
-  "Anjeli Letparia - Teknik Komputer",
-  "Alfan Fadla - Teknik Komputer",
-  "Aditya Sanjaya - Teknik Komputer",
-  "Abil Qos Alaudin - Teknik Komputer"
+  "Tri Wahyuni - Teknik Komputer"
 ];
-    let aktivitas = JSON.parse(localStorage.getItem("aktivitas")) || [
-      "Diskusi kelompok",
-      "Presentasi tugas",
-      "Praktikum lab"
-    ];
+let aktivitas = JSON.parse(localStorage.getItem("aktivitas")) || ["Diskusi kelompok","Presentasi tugas","Praktikum lab"];
 
-    function renderSiswa() {
-      let list = document.getElementById('listSiswa');
-      list.innerHTML = '';
-      siswa.forEach((nama, i) => {
-        let li = document.createElement('li');
-        li.innerHTML = `${nama} <span class="delete-btn" onclick="hapusSiswa(${i})">❌</span>`;
-        list.appendChild(li);
-      });
-    }
+function renderSiswa() {
+  let list = document.getElementById('listSiswa');
+  list.innerHTML = '';
+  siswa.forEach((nama, i) => {
+    let li = document.createElement('li');
+    li.innerHTML = `${nama} <span class="delete-btn" onclick="hapusSiswa(${i})">❌</span>`;
+    list.appendChild(li);
+  });
+}
 
-    function renderAktivitas() {
-      let list = document.getElementById('listAktivitas');
-      list.innerHTML = '';
-      aktivitas.forEach((act, i) => {
-        let li = document.createElement('li');
-        li.innerHTML = `${act} <span class="delete-btn" onclick="hapusAktivitas(${i})">❌</span>`;
-        list.appendChild(li);
-      });
-    }
+function renderAktivitas() {
+  let list = document.getElementById('listAktivitas');
+  list.innerHTML = '';
+  aktivitas.forEach((act, i) => {
+    let li = document.createElement('li');
+    li.innerHTML = `${act} <span class="delete-btn" onclick="hapusAktivitas(${i})">❌</span>`;
+    list.appendChild(li);
+  });
+}
 
-    function tambahSiswa() {
-      let input = document.getElementById('inputSiswa');
-      let nama = input.value.trim();
-      if (nama === '') { alert('Nama siswa tidak boleh kosong!'); return; }
-      siswa.push(nama);
-      simpanData();
-      renderSiswa();
-      input.value = '';
-    }
+function tambahSiswa() {
+  let input = document.getElementById('inputSiswa');
+  let nama = input.value.trim();
+  if(!nama) { alert('Nama siswa tidak boleh kosong!'); return; }
+  siswa.push(nama); simpanData(); renderSiswa(); input.value='';
+}
+function tambahAktivitas() {
+  let input = document.getElementById('inputAktivitas');
+  let act = input.value.trim();
+  if(!act) { alert('Aktivitas tidak boleh kosong!'); return; }
+  aktivitas.push(act); simpanData(); renderAktivitas(); input.value='';
+}
 
-    function tambahAktivitas() {
-      let input = document.getElementById('inputAktivitas');
-      let act = input.value.trim();
-      if (act === '') { alert('Aktivitas tidak boleh kosong!'); return; }
-      aktivitas.push(act);
-      simpanData();
-      renderAktivitas();
-      input.value = '';
-    }
+function hapusSiswa(i){ siswa.splice(i,1); simpanData(); renderSiswa(); }
+function hapusAktivitas(i){ aktivitas.splice(i,1); simpanData(); renderAktivitas(); }
 
-    function hapusSiswa(i) {
-      siswa.splice(i, 1);
-      simpanData();
-      renderSiswa();
-    }
-    function hapusAktivitas(i) {
-      aktivitas.splice(i, 1);
-      simpanData();
-      renderAktivitas();
-    }
+function simpanData(){
+  localStorage.setItem("siswa",JSON.stringify(siswa));
+  localStorage.setItem("aktivitas",JSON.stringify(aktivitas));
+}
 
-    function simpanData() {
-      localStorage.setItem("siswa", JSON.stringify(siswa));
-      localStorage.setItem("aktivitas", JSON.stringify(aktivitas));
-    }
+// Inisialisasi
+renderSiswa(); renderAktivitas();
 
-    renderSiswa();
-    renderAktivitas();
-  </script>
+// Musik
+const music = document.getElementById('bgMusic');
+function toggleMusic(){
+  if(music.paused){ music.play(); } else { music.pause(); }
+}
+</script>
 </body>
 </html>
-<header>
-  import { neon } from '@netlify/neon';
-const sql = neon(); // automatically uses env NETLIFY_DATABASE_URL
-const [post] = await sql`SELECT * FROM posts WHERE id = ${postId}`;
