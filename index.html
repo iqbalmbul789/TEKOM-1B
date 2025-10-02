@@ -2,173 +2,90 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Kelas TEKOM B - Computer Engineering</title>
+<title>Kelas TEKOM B</title>
 <style>
-/* --- Body & Background --- */
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #333;
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-  overflow-x: hidden;
-  animation: bgAnim 20s infinite alternate;
-}
-
-/* --- Header --- */
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Segoe UI',Arial,sans-serif; min-height:100vh; background:#f5f7fa; color:#333; }
 header {
-  text-align: center;
-  padding: 30px 20px;
-  background: #0d47a1;
-  color: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  text-align:center; padding:25px 20px; background:#0d47a1; color:#fff;
+  box-shadow:0 2px 5px rgba(0,0,0,0.2);
 }
-header img {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
-  margin-bottom: 15px;
-  animation: rotateLogo 10s linear infinite;
-}
-header h1 { margin: 0; font-size: 28px; }
-header h2 { margin: 5px 0 0; font-weight: 400; font-size: 18px; }
+header img { width:120px; height:120px; object-fit:contain; margin-bottom:10px; }
+header h1 { margin:0; font-size:30px; }
+header h2 { margin:5px 0 0; font-weight:400; font-size:18px; }
 
-/* --- Navigation --- */
-nav {
-  text-align: center;
-  margin: 20px 0;
+#musicControl {
+  position:absolute; top:15px; right:20px; background:#fff; border:none; padding:6px 12px;
+  border-radius:20px; cursor:pointer; font-size:14px; font-weight:bold; color:#0d47a1;
 }
+nav { text-align:center; margin:20px 0; }
 nav button {
-  background: #1976d2;
-  border: none;
-  color: white;
-  padding: 10px 16px;
-  margin: 5px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
+  background:#1976d2; border:none; color:#fff; padding:10px 16px; margin:5px;
+  border-radius:20px; cursor:pointer; font-size:14px; transition:0.3s;
 }
-nav button:hover {
-  background: #0d47a1;
-  transform: scale(1.05);
-}
+nav button:hover { background:#0d47a1; }
 
-/* --- Cards --- */
 .card {
-  background: white;
-  max-width: 650px;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  animation: fadeIn 0.6s ease-in-out;
+  background:#fff; border-radius:12px; max-width:700px; margin:20px auto; padding:20px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-h3 { color: #0d47a1; margin-top: 0; }
-
-/* --- List --- */
-ul { list-style: none; padding: 0; }
+h3 { color:#0d47a1; margin-bottom:12px; }
+ul { list-style:none; padding:0; }
 ul li {
-  background: #f5f5f5;
-  margin: 6px 0;
-  padding: 10px 14px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: 0.2s;
+  background:#f0f0f0; margin:8px 0; padding:10px 14px; border-radius:8px;
+  display:flex; justify-content:space-between; align-items:center;
 }
-ul li:hover { background: #e3f2fd; }
-
-.delete-btn {
-  color: red;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* --- Inputs & Buttons --- */
+.delete-btn { color:red; cursor:pointer; font-weight:bold; }
 input[type="text"] {
-  padding: 8px;
-  width: 70%;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-right: 5px;
+  padding:8px; width:70%; border:1px solid #ccc; border-radius:6px; margin-right:5px;
 }
 .add-btn {
-  background: #43a047;
-  border: none;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
+  background:#43a047; border:none; color:white; padding:8px 14px;
+  border-radius:6px; cursor:pointer; transition:0.3s;
 }
-.add-btn:hover { background: #2e7d32; }
+.add-btn:hover { background:#2e7d32; }
 
-.hidden { display: none; }
+.hidden { display:none; }
 
-/* --- Animations --- */
-@keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
-@keyframes rotateLogo { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
-@keyframes bgAnim { 0%{background-position:0 0;} 100%{background-position:100% 100%;} }
+/* Galeri foto */
+.gallery {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px; margin-top:15px;
+}
+.gallery img {
+  width:100%; height:120px; object-fit:cover; border-radius:8px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:0.3s;
+}
+.gallery img:hover { transform:scale(1.05); }
 </style>
 </head>
 <body>
-
-<!-- --- Backsound Musik --- -->
-<audio id="bgMusic" autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
 
 <header>
   <img src="logo.png" alt="Logo Kelas TEKOM B">
   <h1>Kelas TEKOM B</h1>
   <h2>Computer Engineering</h2>
+  <button id="musicControl" onclick="toggleMusic()">🔊 Musik</button>
+  <audio id="bgMusic" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
 </header>
 
 <nav>
   <button onclick="show('siswa')">📘 Daftar Siswa</button>
   <button onclick="show('jadwal')">📅 Jadwal Kelas</button>
   <button onclick="show('aktivitas')">📝 Aktivitas</button>
+  <button onclick="show('pengumuman')">📢 Pengumuman</button>
+  <button onclick="show('kontak')">📞 Kontak</button>
+  <button onclick="show('galeri')">🖼 Galeri</button>
 </nav>
 
+<!-- Daftar Siswa -->
 <div id="siswa" class="card">
   <h3>Daftar Siswa</h3>
   <ul id="listSiswa"></ul>
   <div>
-    <input type="text" id="inputSiswa" placeholder="Masukkan nama siswa" />
-    <button class="add-btn" onclick="tambahSiswa()">Tambah</button>
-  </div>
-</div>
-
-<div id="jadwal" class="card hidden">
-  <h3>Jadwal Kelas</h3>
-  <ul>
-    <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
-    <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
-  </ul>
-</div>
-
-<div id="aktivitas" class="card hidden">
-  <h3>Aktivitas Kelas</h3>
-  <ul id="listAktivitas"></ul>
-  <div>
-    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
-    <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
-  </div>
-</div>
-
-<script>
-function show(id){
-  document.getElementById('siswa').classList.add('hidden');
-  document.getElementById('jadwal').classList.add('hidden');
-  document.getElementById('aktivitas').classList.add('hidden');
-  document.getElementById(id).classList.remove('hidden');
-}
-
-// Data awal
-let siswa = JSON.parse(localStorage.getItem("siswa")) || [
+    <input type="text" id="inputSiswa" placeholder=" [
   "Siti Olyvia - Teknik Komputer",
   "Yunia Arum Kusuma Dewi - Teknik Komputer",
   "Nayla Erli Suci Ramadhani - Teknik Komputer",
@@ -219,54 +136,102 @@ let siswa = JSON.parse(localStorage.getItem("siswa")) || [
   "Alfan Fadla - Teknik Komputer",
   "Aditya Sanjaya - Teknik Komputer",
   "Abil Qos Alaudin - Teknik Komputer"
-];
-let aktivitas=["Diskusi kelompok","Presentasi tugas","Praktikum lab"];
+];" />
+    <button class="add-btn" onclick="tambahSiswa()">Tambah</button>
+  </div>
+</div>
 
-// Render daftar siswa
-function renderSiswa(){
-  let list=document.getElementById('listSiswa');
-  list.innerHTML='';
-  siswa.forEach((nama,i)=>{
-    let li=document.createElement('li');
-    li.innerHTML=`${nama} <span class="delete-btn" onclick="hapusSiswa(${i})">❌</span>`;
+<!-- Jadwal -->
+<div id="jadwal" class="card hidden">
+  <h3>Jadwal Kelas</h3>
+  <ul>
+    <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
+    <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
+  </ul>
+</div>
+
+<!-- Aktivitas -->
+<div id="aktivitas" class="card hidden">
+  <h3>Aktivitas Kelas</h3>
+  <ul id="listAktivitas"></ul>
+  <div>
+    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
+    <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
+  </div>
+</div>
+
+<!-- Pengumuman -->
+<div id="pengumuman" class="card hidden">
+  <h3>Pengumuman</h3>
+  <ul id="listPengumuman"></ul>
+  <div>
+    <input type="text" id="inputPengumuman" placeholder="Tambah pengumuman baru" />
+    <button class="add-btn" onclick="tambahPengumuman()">Tambah</button>
+  </div>
+</div>
+
+<!-- Kontak -->
+  "<p>📱 WhatsApp Group: <a href="#">https://wa.me/qr/MDESMT5RTTL4K1</a></p>
+  <p>🌐 Instagram: <a href="#">@tekom_1b</a></p>
+</div>
+
+<!-- Galeri -->
+<div id="galeri" class="card hidden">
+  <h3>Galeri Foto</h3>
+  <div class="gallery">
+    <img src="foto1.jpg" alt="Foto 1">
+    <img src="foto2.jpg" alt="Foto 2">
+    <img src="foto3.jpg" alt="Foto 3">
+  </div>
+</div>
+
+<script>
+// Musik
+const music=document.getElementById('bgMusic');
+function toggleMusic(){ music.paused?music.play():music.pause(); }
+
+// Navigasi
+function show(id){
+  ['siswa','jadwal','aktivitas','pengumuman','kontak','galeri'].forEach(i=>document.getElementById(i).classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+// Data
+let siswa=JSON.parse(localStorage.getItem("siswa"))||["Siti Olyvia - Teknik Komputer","Yunia Arum Kusuma Dewi - Teknik Komputer"];
+let aktivitas=JSON.parse(localStorage.getItem("aktivitas"))||["Diskusi kelompok","Presentasi tugas","Praktikum lab"];
+let pengumuman=JSON.parse(localStorage.getItem("pengumuman"))||["Besok ada rapat kelas","Kumpulkan tugas minggu ini"];
+
+// Render
+function renderList(arr,id,removeFn){
+  const list=document.getElementById(id); list.innerHTML='';
+  arr.forEach((item,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`${item} <span class="delete-btn" onclick="${removeFn}(${i})">❌</span>`;
     list.appendChild(li);
   });
 }
+function renderSiswa(){ renderList(siswa,'listSiswa','hapusSiswa'); }
+function renderAktivitas(){ renderList(aktivitas,'listAktivitas','hapusAktivitas'); }
+function renderPengumuman(){ renderList(pengumuman,'listPengumuman','hapusPengumuman'); }
 
-// Render aktivitas
-function renderAktivitas(){
-  let list=document.getElementById('listAktivitas');
-  list.innerHTML='';
-  aktivitas.forEach((act,i)=>{
-    let li=document.createElement('li');
-    li.innerHTML=`${act} <span class="delete-btn" onclick="hapusAktivitas(${i})">❌</span>`;
-    list.appendChild(li);
-  });
+// Tambah
+function tambahSiswa(){ let n=document.getElementById('inputSiswa').value.trim(); if(!n){alert('Nama tidak boleh kosong!'); return;} siswa.push(n); simpanData(); renderSiswa(); document.getElementById('inputSiswa').value=''; }
+function tambahAktivitas(){ let a=document.getElementById('inputAktivitas').value.trim(); if(!a){alert('Aktivitas tidak boleh kosong!'); return;} aktivitas.push(a); simpanData(); renderAktivitas(); document.getElementById('inputAktivitas').value=''; }
+function tambahPengumuman(){ let p=document.getElementById('inputPengumuman').value.trim(); if(!p){alert('Pengumuman tidak boleh kosong!'); return;} pengumuman.push(p); simpanData(); renderPengumuman(); document.getElementById('inputPengumuman').value=''; }
+
+// Hapus
+function hapusSiswa(i){ siswa.splice(i,1); simpanData(); renderSiswa(); }
+function hapusAktivitas(i){ aktivitas.splice(i,1); simpanData(); renderAktivitas(); }
+function hapusPengumuman(i){ pengumuman.splice(i,1); simpanData(); renderPengumuman(); }
+
+// Simpan
+function simpanData(){
+  localStorage.setItem("siswa",JSON.stringify(siswa));
+  localStorage.setItem("aktivitas",JSON.stringify(aktivitas));
+  localStorage.setItem("pengumuman",JSON.stringify(pengumuman));
 }
 
-// Tambah data
-function tambahSiswa(){
-  let input=document.getElementById('inputSiswa').value.trim();
-  if(!input){alert('Nama siswa tidak boleh kosong!'); return;}
-  siswa.push(input);
-  renderSiswa();
-  document.getElementById('inputSiswa').value='';
-}
-function tambahAktivitas(){
-  let input=document.getElementById('inputAktivitas').value.trim();
-  if(!input){alert('Aktivitas tidak boleh kosong!'); return;}
-  aktivitas.push(input);
-  renderAktivitas();
-  document.getElementById('inputAktivitas').value='';
-}
-
-// Hapus data
-function hapusSiswa(i){ siswa.splice(i,1); renderSiswa(); }
-function hapusAktivitas(i){ aktivitas.splice(i,1); renderAktivitas(); }
-
-// Initial render
-renderSiswa();
-renderAktivitas();
+renderSiswa(); renderAktivitas(); renderPengumuman();
 </script>
 </body>
 </html>
