@@ -1,195 +1,390 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Kelas TEKOM B</title>
-  <style>
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Segoe UI',Arial,sans-serif; background:#f5f7fa; color:#333; }
+<meta charset="UTF-8">
+<title>Kelas TEKOM B</title>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',Arial,sans-serif; min-height:100vh; background:#f5f7fa; color:#333; }
+  header {
+    text-align:center; padding:25px 20px; background:#0d47a1; color:#fff;
+    box-shadow:0 2px 5px rgba(0,0,0,0.2); position:relative;
+  }
+  header img { width:90px; height:90px; object-fit:contain; margin-bottom:8px; }
+  header h1 { margin:0; font-size:26px; }
+  header p { margin-top:6px; opacity:0.9; }
 
-    header { text-align:center; padding:20px; background:#0d47a1; color:white; }
-    header h1 { margin-bottom:10px; }
+  #musicControl {
+    position:absolute; top:14px; right:18px; background:#fff; border:none; padding:6px 12px;
+    border-radius:20px; cursor:pointer; font-size:14px; font-weight:bold; color:#0d47a1;
+    box-shadow:0 2px 6px rgba(0,0,0,0.12);
+  }
 
-    nav { display:flex; justify-content:center; gap:15px; background:#1565c0; padding:10px; }
-    nav button {
-      background:#fff; border:none; padding:10px 15px; border-radius:5px;
-      cursor:pointer; transition:0.3s;
-    }
-    nav button:hover { background:#90caf9; }
+  nav { text-align:center; margin:18px 0; }
+  nav button {
+    background:#1976d2; border:none; color:#fff; padding:10px 14px; margin:6px;
+    border-radius:20px; cursor:pointer; font-size:14px; transition:0.2s;
+  }
+  nav button.active { background:#0d47a1; box-shadow:0 2px 6px rgba(13,71,161,0.15); }
+  nav button:hover { transform:translateY(-2px); }
 
-    .container { max-width:900px; margin:20px auto; padding:15px; }
-    .card {
-      background:#fff; padding:20px; margin-bottom:20px;
-      border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1);
-    }
-    .card h3 { margin-bottom:10px; border-bottom:2px solid #eee; padding-bottom:5px; }
-    ul { list-style:none; padding:0; }
-    li { padding:8px; border-bottom:1px solid #eee; }
-    li:last-child { border:none; }
+  .card {
+    background:#fff; border-radius:12px; max-width:900px; margin:12px auto; padding:18px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  }
+  h3 { color:#0d47a1; margin-bottom:12px; }
+  ul { list-style:none; padding:0; margin:0; }
+  ul li {
+    background:#fafafa; margin:8px 0; padding:10px 12px; border-radius:8px;
+    display:flex; justify-content:space-between; align-items:center; gap:8px;
+    border:1px solid #eee;
+  }
+  .name { flex:1; word-break:break-word; }
 
-    .social-links { display:flex; gap:15px; justify-content:center; margin-top:20px; }
-    .social-links a {
-      text-decoration:none; padding:10px 20px; border-radius:8px;
-      color:white; font-weight:bold; transition:0.3s;
-    }
-    .whatsapp { background:#25D366; }
-    .whatsapp:hover { background:#1ebe5d; }
-    .instagram { background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); }
-    .instagram:hover { opacity:0.85; }
+  .delete-btn {
+    background:transparent; border:none; color:#d32f2f; cursor:pointer; font-weight:bold;
+    padding:6px 8px; border-radius:6px;
+  }
+  .delete-btn:hover { background:rgba(211,47,47,0.08); }
 
-    .hidden { display:none; }
-    .add-btn {
-      margin-top:10px; padding:8px 12px; border:none; border-radius:5px;
-      background:#0d47a1; color:white; cursor:pointer;
-    }
-    .add-btn:hover { background:#1565c0; }
-    input { padding:6px; margin-top:10px; width:70%; }
-  </style>
+  .controls { display:flex; gap:8px; align-items:center; margin-top:10px; }
+  input[type="text"] {
+    padding:8px; flex:1; border:1px solid #ccc; border-radius:8px;
+    font-size:14px;
+  }
+  .add-btn {
+    background:#43a047; border:none; color:white; padding:9px 14px; border-radius:8px;
+    cursor:pointer; font-weight:600;
+  }
+  .add-btn:hover { background:#2e7d32; }
+
+  .hidden { display:none; }
+
+  /* Footer Sosial Media */
+  footer { text-align:center; padding:18px; margin-top:18px; }
+  .social-links { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .social-links a {
+    text-decoration:none; font-weight:700; padding:10px 16px; border-radius:24px; color:#fff;
+    display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  }
+  .social-links .wa { background:#25D366; }
+  .social-links .ig { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+
+  /* small */
+  @media (max-width:600px){
+    header h1{font-size:20px}
+    nav button{padding:8px 10px}
+    .card{margin:8px}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Kelas TEKOM B</h1>
-    <p>Portal Informasi Mahasiswa</p>
-  </header>
 
-  <nav>
-    <button onclick="tampil('siswa')">👩‍🎓 Daftar Siswa</button>
-    <button onclick="tampil('aktivitas')">📝 Aktivitas</button>
-    <button onclick="tampil('pengumuman')">📢 Pengumuman</button>
-  </nav>
+<header>
+  <img src="logo.png" alt="Logo Kelas TEKOM B">
+  <h1>Kelas TEKOM B</h1>
+  <p>Portal Informasi Mahasiswa</p>
+  <button id="musicControl" onclick="toggleMusic()">🔊 Musik</button>
+  <audio id="bgMusic" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
+</header>
 
-  <div class="container">
-    <!-- Daftar Siswa -->
-    <div id="siswa" class="card">
-      <h3>👩‍🎓 Daftar Siswa</h3>
-      <ul id="listSiswa"></ul>
-    </div>
+<nav id="mainNav">
+  <button data-target="siswa" class="active" onclick="showSection('siswa', this)">📘 Daftar Siswa</button>
+  <button data-target="jadwal" onclick="showSection('jadwal', this)">📅 Jadwal</button>
+  <button data-target="aktivitas" onclick="showSection('aktivitas', this)">📝 Aktivitas</button>
+  <button data-target="pengumuman" onclick="showSection('pengumuman', this)">📢 Pengumuman</button>
+  <button data-target="galeri" onclick="showSection('galeri', this)">🖼 Galeri</button>
+</nav>
 
-    <!-- Aktivitas -->
-    <div id="aktivitas" class="card hidden">
-      <h3>📝 Aktivitas</h3>
-      <ul id="listAktivitas"></ul>
-      <div>
-        <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas baru" />
-        <button class="add-btn" onclick="tambahAktivitas()">Tambah</button>
-      </div>
-    </div>
+<!-- Siswa -->
+<div id="siswa" class="card">
+  <h3>Daftar Siswa</h3>
+  <ul id="listSiswa"></ul>
 
-    <!-- Pengumuman -->
-    <div id="pengumuman" class="card hidden">
-      <h3>📢 Pengumuman</h3>
-      <ul id="listPengumuman"></ul>
-      <div>
-        <input type="text" id="inputPengumuman" placeholder="Tambah pengumuman baru" />
-        <button class="add-btn" onclick="tambahPengumuman()">Tambah</button>
-      </div>
-    </div>
-
-    <!-- Sosial Media -->
-    <div class="card">
-      <h3>🌐 Sosial Media</h3>
-      <div class="social-links">
-        <a class="whatsapp" href="https://wa.me/6281234567890" target="_blank">WhatsApp</a>
-        <a class="instagram" href="https://instagram.com/tekom_b" target="_blank">Instagram</a>
-      </div>
-    </div>
+  <div class="controls">
+    <input type="text" id="inputSiswa" placeholder="Tambah nama siswa baru (contoh: Nama - Teknik Komputer)">
+    <button class="add-btn" id="btnAddSiswa">Tambah Siswa</button>
   </div>
+</div>
 
-  <script>
-    // Daftar siswa lengkap
-    let siswa=JSON.parse(localStorage.getItem("siswa"))||[
-      "Siti Olyvia - Teknik Komputer",
-      "Yunia Arum Kusuma Dewi - Teknik Komputer",
-      "Nayla Erli Suci Ramadhani - Teknik Komputer",
-      "Tri Wahyuni - Teknik Komputer",
-      "Dela Ahmad Anisa Putri - Teknik Komputer",
-      "Indria Sagita - Teknik Komputer",
-      "Rara Sevira Anggraini - Teknik Komputer",
-      "Muhammad Enggar Ilman Nafian - Teknik Komputer",
-      "Vico Algibran - Teknik Komputer",
-      "Arief Ahmadi - Teknik Komputer",
-      "Widya Ayu Gistala - Teknik Komputer",
-      "Muhammad Aeris Angghi Effendi - Teknik Komputer",
-      "Sudarman - Teknik Komputer",
-      "Fauzan Aziz - Teknik Komputer",
-      "Eza Julian - Teknik Komputer",
-      "Krisda Apriantika - Teknik Komputer",
-      "Dwi Ramadhanna - Teknik Komputer",
-      "Repy Septiyawan - Teknik Komputer",
-      "Khutrotul Jannah - Teknik Komputer",
-      "Aisyiyah Qolbi - Teknik Komputer",
-      "Bakas Minanga Jaya Laga - Teknik Komputer",
-      "Anisa Hanifatun Abdilah - Teknik Komputer",
-      "Irvan Ali Rosyadi - Teknik Komputer",
-      "Muhammad Ghazian Alpha Hazazi - Teknik Komputer",
-      "Naufal Halim - Teknik Komputer",
-      "Riko Wiratama - Teknik Komputer",
-      "Sarina - Teknik Komputer",
-      "Widiya Wulansari - Teknik Komputer",
-      "Yuga Azrial Maulana - Teknik Komputer",
-      "Abdurrahman Ghozie - Teknik Komputer",
-      "Antoni Wijaya - Teknik Komputer",
-      "Arief Junaidi - Teknik Komputer",
-      "Aulia Malik Fadhillah - Teknik Komputer",
-      "Ulfi Maula - Teknik Komputer",
-      "Kholillurrohman - Teknik Komputer",
-      "Mugi Handoyo - Teknik Komputer"
-    ];
+<!-- Jadwal -->
+<div id="jadwal" class="card hidden">
+  <h3>Jadwal Kelas</h3>
+  <ul>
+    <li>Senin: Ilmu Filsafat (07:30 - 09:00), Keamanan Informasi (09:00 - 10:30), Bahasa Inggris (10:30 - 12:00), PAI (13:00 - 14:30)</li>
+    <li>Selasa: PKN (07:30 - 09:00), Pengantar TI (09:00 - 10:30), Sistem Komputer (10:30 - 12:00)</li>
+    <li>Rabu: Matematika Diskrit, Pemrograman Dasar</li>
+    <li>Kamis: Jaringan Komputer, Sistem Operasi</li>
+    <li>Jumat: Praktikum / Bimbingan</li>
+  </ul>
+</div>
 
-    // Aktivitas kelas
-    let aktivitas=JSON.parse(localStorage.getItem("aktivitas"))||[
-      "Presentasi tugas kelompok",
-      "Diskusi kelas",
-      "Praktikum di laboratorium",
-      "Mengerjakan kuis",
-      "Ujian Tengah Semester (UTS)",
-      "Ujian Akhir Semester (UAS)",
-      "Belajar mandiri di kelas",
-      "Rapat kelas bersama dosen wali"
-    ];
+<!-- Aktivitas -->
+<div id="aktivitas" class="card hidden">
+  <h3>Aktivitas Kelas</h3>
+  <ul id="listAktivitas"></ul>
 
-    // Pengumuman
-    let pengumuman=JSON.parse(localStorage.getItem("pengumuman"))||[
-      "Minggu libur, besok mau tidur pulas"
-    ];
+  <div class="controls">
+    <input type="text" id="inputAktivitas" placeholder="Tambah aktivitas (misal: Presentasi tugas kelompok)">
+    <button class="add-btn" id="btnAddAktivitas">Tambah Aktivitas</button>
+  </div>
+</div>
 
-    function simpan() {
-      localStorage.setItem("siswa",JSON.stringify(siswa));
-      localStorage.setItem("aktivitas",JSON.stringify(aktivitas));
-      localStorage.setItem("pengumuman",JSON.stringify(pengumuman));
-    }
+<!-- Pengumuman -->
+<div id="pengumuman" class="card hidden">
+  <h3>Pengumuman</h3>
+  <ul id="listPengumuman"></ul>
 
-    function tampil(menu) {
-      document.getElementById("siswa").classList.add("hidden");
-      document.getElementById("aktivitas").classList.add("hidden");
-      document.getElementById("pengumuman").classList.add("hidden");
-      document.getElementById(menu).classList.remove("hidden");
-      render();
-    }
+  <div class="controls">
+    <input type="text" id="inputPengumuman" placeholder="Tambah pengumuman baru">
+    <button class="add-btn" id="btnAddPengumuman">Tambah Pengumuman</button>
+  </div>
+</div>
 
-    function render() {
-      // siswa
-      let sList=document.getElementById("listSiswa");
-      sList.innerHTML=""; siswa.forEach(n=>{ let li=document.createElement("li"); li.textContent=n; sList.appendChild(li); });
-      // aktivitas
-      let aList=document.getElementById("listAktivitas");
-      aList.innerHTML=""; aktivitas.forEach(n=>{ let li=document.createElement("li"); li.textContent=n; aList.appendChild(li); });
-      // pengumuman
-      let pList=document.getElementById("listPengumuman");
-      pList.innerHTML=""; pengumuman.forEach(n=>{ let li=document.createElement("li"); li.textContent=n; pList.appendChild(li); });
-    }
+<!-- Galeri -->
+<div id="galeri" class="card hidden">
+  <h3>Galeri Foto</h3>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px;">
+    <img src="foto1.jpg" alt="Foto 1" style="width:100%; height:110px; object-fit:cover; border-radius:8px;">
+    <img src="foto2.jpg" alt="Foto 2" style="width:100%; height:110px; object-fit:cover; border-radius:8px;">
+    <img src="foto3.jpg" alt="Foto 3" style="width:100%; height:110px; object-fit:cover; border-radius:8px;">
+  </div>
+</div>
 
-    function tambahAktivitas() {
-      let val=document.getElementById("inputAktivitas").value.trim();
-      if(val){ aktivitas.push(val); document.getElementById("inputAktivitas").value=""; simpan(); render(); }
-    }
-    function tambahPengumuman() {
-      let val=document.getElementById("inputPengumuman").value.trim();
-      if(val){ pengumuman.push(val); document.getElementById("inputPengumuman").value=""; simpan(); render(); }
-    }
+<footer>
+  <div class="social-links">
+    <a class="wa" href="https://wa.me/6282240411060" target="_blank">📱 WhatsApp</a>
+    <a class="ig" href="https://instagram.com/tekom_1b" target="_blank">📸 Instagram</a>
+  </div>
+</footer>
 
-    // Tampilkan siswa default saat buka
-    render();
-  </script>
+<script>
+/* ============================
+   Data awal (lengkap)
+   ============================ */
+const defaultSiswa = [
+  "Siti Olyvia - Teknik Komputer",
+  "Yunia Arum Kusuma Dewi - Teknik Komputer",
+  "Nayla Erli Suci Ramadhani - Teknik Komputer",
+  "Tri Wahyuni - Teknik Komputer",
+  "Dela Ahmad Anisa Putri - Teknik Komputer",
+  "Indria Sagita - Teknik Komputer",
+  "Rara Sevira Anggraini - Teknik Komputer",
+  "Muhammad Enggar Ilman Nafian - Teknik Komputer",
+  "Vico Algibran - Teknik Komputer",
+  "Arief Ahmadi - Teknik Komputer",
+  "Widya Ayu Gistala - Teknik Komputer",
+  "Muhammad Aeris Angghi Effendi - Teknik Komputer",
+  "Sudarman - Teknik Komputer",
+  "Fauzan Aziz - Teknik Komputer",
+  "Eza Julian - Teknik Komputer",
+  "Krisda Apriantika - Teknik Komputer",
+  "Dwi Ramadhanna - Teknik Komputer",
+  "Repy Septiyawan - Teknik Komputer",
+  "Khutrotul Jannah - Teknik Komputer",
+  "Aisyiyah Qolbi - Teknik Komputer",
+  "Bakas Minanga Jaya Laga - Teknik Komputer",
+  "Anisa Hanifatun Abdilah - Teknik Komputer",
+  "Irvan Ali Rosyadi - Teknik Komputer",
+  "Muhammad Ghazian Alpha Hazazi - Teknik Komputer",
+  "Naufal Halim - Teknik Komputer",
+  "Riko Wiratama - Teknik Komputer",
+  "Sarina - Teknik Komputer",
+  "Widiya Wulansari - Teknik Komputer",
+  "Yuga Azrial Maulana - Teknik Komputer",
+  "Abdurrahman Ghozie - Teknik Komputer",
+  "Antoni Wijaya - Teknik Komputer",
+  "Arief Junaidi - Teknik Komputer",
+  "Aulia Malik Fadhillah - Teknik Komputer",
+  "Ulfi Maula - Teknik Komputer",
+  "Kholillurrohman - Teknik Komputer",
+  "Mugi Handoyo - Teknik Komputer",
+  "Rahmat - Teknik Komputer",
+  "Nur Resepa H - Teknik Komputer",
+  "Nadia Nur Azzahraa - Teknik Komputer",
+  "Muhammad Iqbal Nugroho - Teknik Komputer",
+  "M. Yusuf Tegar - Teknik Komputer",
+  "M. Arif Wahyudi - Teknik Komputer",
+  "M. Bustomi - Teknik Komputer",
+  "Faqih Hidayat - Teknik Komputer",
+  "Cinta Pebrian - Teknik Komputer",
+  "Deastine Suherlan - Teknik Komputer",
+  "Anjeli Letparia - Teknik Komputer",
+  "Alfan Fadla - Teknik Komputer",
+  "Aditya Sanjaya - Teknik Komputer",
+  "Abil Qos Alaudin - Teknik Komputer"
+];
+
+const defaultAktivitas = [
+  "Presentasi tugas kelompok",
+  "Diskusi kelas",
+  "Praktikum di laboratorium",
+  "Mengerjakan kuis",
+  "Ujian Tengah Semester (UTS)",
+  "Ujian Akhir Semester (UAS)",
+  "Belajar mandiri di kelas",
+  "Rapat kelas bersama dosen wali"
+];
+
+const defaultPengumuman = [
+  "Minggu libur, besok mau tidur pulas"
+];
+
+/* ============================
+   Ambil / simpan localStorage
+   ============================ */
+let siswa = JSON.parse(localStorage.getItem("siswa")) || defaultSiswa.slice();
+let aktivitas = JSON.parse(localStorage.getItem("aktivitas")) || defaultAktivitas.slice();
+let pengumuman = JSON.parse(localStorage.getItem("pengumuman")) || defaultPengumuman.slice();
+
+function simpanSemua(){
+  localStorage.setItem("siswa", JSON.stringify(siswa));
+  localStorage.setItem("aktivitas", JSON.stringify(aktivitas));
+  localStorage.setItem("pengumuman", JSON.stringify(pengumuman));
+}
+
+/* ============================
+   Render functions
+   ============================ */
+function renderSiswa(){
+  const ul = document.getElementById('listSiswa');
+  ul.innerHTML = '';
+  siswa.forEach((nama, idx) => {
+    const li = document.createElement('li');
+    const span = document.createElement('div');
+    span.className = 'name';
+    span.textContent = nama;
+    const del = document.createElement('button');
+    del.className = 'delete-btn';
+    del.title = 'Hapus siswa';
+    del.innerHTML = '❌';
+    del.addEventListener('click', () => {
+      if(confirm(`Hapus "${nama}" dari daftar?`)){
+        siswa.splice(idx,1); simpanSemua(); renderSiswa();
+      }
+    });
+    li.appendChild(span);
+    li.appendChild(del);
+    ul.appendChild(li);
+  });
+}
+
+function renderAktivitas(){
+  const ul = document.getElementById('listAktivitas');
+  ul.innerHTML = '';
+  aktivitas.forEach((item, idx) => {
+    const li = document.createElement('li');
+    const span = document.createElement('div');
+    span.className = 'name';
+    span.textContent = item;
+    const del = document.createElement('button');
+    del.className = 'delete-btn';
+    del.innerHTML = '❌';
+    del.title='Hapus aktivitas';
+    del.addEventListener('click', () => {
+      if(confirm(`Hapus aktivitas "${item}"?`)){
+        aktivitas.splice(idx,1); simpanSemua(); renderAktivitas();
+      }
+    });
+    li.appendChild(span); li.appendChild(del); ul.appendChild(li);
+  });
+}
+
+function renderPengumuman(){
+  const ul = document.getElementById('listPengumuman');
+  ul.innerHTML = '';
+  pengumuman.forEach((item, idx) => {
+    const li = document.createElement('li');
+    const span = document.createElement('div');
+    span.className = 'name';
+    span.textContent = item;
+    const del = document.createElement('button');
+    del.className = 'delete-btn';
+    del.innerHTML = '❌';
+    del.title='Hapus pengumuman';
+    del.addEventListener('click', () => {
+      if(confirm(`Hapus pengumuman "${item}"?`)){
+        pengumuman.splice(idx,1); simpanSemua(); renderPengumuman();
+      }
+    });
+    li.appendChild(span); li.appendChild(del); ul.appendChild(li);
+  });
+}
+
+/* ============================
+   Show section + nav active
+   ============================ */
+function showSection(id, btnEl){
+  // hide all
+  ['siswa','jadwal','aktivitas','pengumuman','galeri'].forEach(k=>{
+    const el = document.getElementById(k);
+    if(el) el.classList.add('hidden');
+  });
+  // show chosen
+  const target = document.getElementById(id);
+  if(target) target.classList.remove('hidden');
+
+  // nav active class
+  document.querySelectorAll('#mainNav button').forEach(b => b.classList.remove('active'));
+  if(btnEl) btnEl.classList.add('active');
+
+  // render content (to ensure lists updated)
+  renderAll();
+}
+
+/* ============================
+   add handlers
+   ============================ */
+document.getElementById('btnAddSiswa').addEventListener('click', () => {
+  const v = document.getElementById('inputSiswa').value.trim();
+  if(!v){ alert('Nama tidak boleh kosong'); return; }
+  siswa.push(v); document.getElementById('inputSiswa').value=''; simpanSemua(); renderSiswa();
+});
+
+document.getElementById('btnAddAktivitas').addEventListener('click', () => {
+  const v = document.getElementById('inputAktivitas').value.trim();
+  if(!v){ alert('Isi aktivitas'); return; }
+  aktivitas.push(v); document.getElementById('inputAktivitas').value=''; simpanSemua(); renderAktivitas();
+});
+
+document.getElementById('btnAddPengumuman').addEventListener('click', () => {
+  const v = document.getElementById('inputPengumuman').value.trim();
+  if(!v){ alert('Isi pengumuman'); return; }
+  pengumuman.push(v); document.getElementById('inputPengumuman').value=''; simpanSemua(); renderPengumuman();
+});
+
+/* ============================
+   Render all initial
+   ============================ */
+function renderAll(){
+  renderSiswa(); renderAktivitas(); renderPengumuman();
+}
+renderAll();
+
+/* Tampilkan default section siswa */
+document.querySelectorAll('#mainNav button').forEach(b=>{
+  if(b.dataset.target === 'siswa'){ b.classList.add('active'); }
+});
+showSection('siswa', document.querySelector('#mainNav button[data-target="siswa"]'));
+
+/* ============================
+   Musik control
+   ============================ */
+const music = document.getElementById('bgMusic');
+function toggleMusic(){
+  if(!music) return;
+  if(music.paused){ music.play(); document.getElementById('musicControl').textContent='🔈 Stop'; }
+  else { music.pause(); music.currentTime = 0; document.getElementById('musicControl').textContent='🔊 Musik'; }
+}
+
+/* ============================
+   Save on unload (safety)
+   ============================ */
+window.addEventListener('beforeunload', () => {
+  simpanSemua();
+});
+</script>
 </body>
 </html>
